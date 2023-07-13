@@ -1,0 +1,41 @@
+html {
+  background-color: rgba(255, 255, 255, 0.53);
+  font-size: 20px;
+}
+
+ul {
+  background: rgb(181, 227, 247);
+  padding: 10px;
+  border: 1px solid black;
+}
+
+li {
+  margin-left: 20px;
+}
+
+a[href^='mailto']::before {
+  content: '📧 ';
+}
+
+a[href^='tel']::before {
+  content: '📞 ';
+}
+aside {
+  width: 40%;
+  padding-left: 0.5rem;
+  margin-left: 0.5rem;
+  float: right;
+  box-shadow: inset 5px 0 5px -5px #29627e;
+  font-style: italic;
+  color: #29627e;
+}
+.Text {
+  margin: 0.5rem;
+  padding: 0.3rem;
+  background-color: #eee;
+  font: 1rem 'Fira Sans', sans-serif;
+}
+
+
+
+
