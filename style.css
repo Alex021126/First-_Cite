@@ -1,6 +1,8 @@
 html {
   background-color: rgb(255, 255, 255);
-  font-size: 20px;
+  font-size: 25px;
+  font-family: 'fangsong';
+  font-weight: bold;
 }
 
 ul {
@@ -19,6 +21,11 @@ a[href^='mailto']::before {
 
 a[href^='tel']::before {
   content: '📞 ';
+}
+
+
+a:visited {
+  color: #fb6542;
 }
 
 aside {
