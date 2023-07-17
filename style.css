@@ -6,10 +6,24 @@ html {
   font-family: "fangsong";
 }
 
+form input[type="search"]{
+
+width: 20%;
+border-radius: 0.5em ;
+height:1.5rem;
+
+}
+
+form input[type="submit"]{
+  border-radius: 0.5em ;
+  height:1.5rem;
+
+  }
 ul {
   background: rgb(181, 227, 247);
   padding: 10px;
-  border: 1px solid black;
+  border-radius: 0.5em ;
+
 }
 
 li {
@@ -31,6 +45,14 @@ a:visited {
 a:hover {
   color:rgba(255, 0, 4, 0.85);
 
+}
+video{
+  width:auto;
+  height: auto;
+}
+iframe{
+  width:100%;
+  height:50%;
 }
 
 aside {
