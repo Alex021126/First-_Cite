@@ -1,1 +1,84 @@
-@import "style.css"
+@import "style.css";
+
+/* lists */
+h2 {
+    font-size: 2rem;
+}
+
+ol {
+    list-style-type: upper-roman;
+}
+
+ul,
+ol,
+dl,
+p {
+    font-size: 1.5rem;
+}
+
+li,
+p {
+    line-height: 1.5;
+}
+
+/* 描述列表样式 */
+
+dd,
+dt {
+    line-height: 1.5;
+}
+
+dt {
+    font-weight: bold;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+/*leftside guider*/
+.leftside {
+    width: 20%;
+    max-height: 100vh;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    float: left;
+    font-style: italic;
+    color: #29627e;
+    height: 100%;
+    overflow-y: auto;
+    transition: 0.3s;
+}
+
+/*main*/
+article {
+    height: 100vh;
+    overflow-y: auto;
+
+}
+
+video {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5em;
+}
+
+iframe {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5em;
+}
+
+aside {
+    width: 20%;
+    max-height: 100vh;
+    padding-left: 0.5rem;
+    margin-left: 0.5rem;
+    float: right;
+    box-shadow: inset 5px 0 5px -5px #29627e;
+    font-style: italic;
+    color: #29627e;
+    height: 100%;
+    overflow-y: auto;
+    transition: 0.3s;
+}

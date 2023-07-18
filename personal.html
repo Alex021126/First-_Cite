@@ -4,7 +4,7 @@
 <head>
   <meta charset="UFT-8">
   <link rel="shortcut icon" href="https://www.bilibili.com/favicon.ico?v=1" />
-  <title>一个网页</title>
+  <title>A Website</title>
 
   <meta name="description" content="A Website." />
   <meta name="viewport" content="width=device-width">
@@ -22,26 +22,32 @@
   <nav> <!-- 本站统一的导航栏 -->
 
     <div class="index">
+      <span style="font-size:20px; cursor:pointer" onclick="openNavleft()">&#9776; </span>
       <a href="index.html">主页</a>&ensp;<a href="personal.html">个人</a>
+      <span style="font-size:20px; cursor:pointer" onclick="openNavright()">&#9776; </span>
     </div>
     <!-- 共 n 个导航栏项目，省略…… -->
 
-    <form > <!-- 搜索栏是站点内导航的一个非线性的方式。 -->
-      <input type="search" name="q" placeholder="Search what you want">
-      <input type="submit" value="Search">
+    <form> <!-- 搜索栏是站点内导航的一个非线性的方式。 -->
+      <input type="search" name="q" placeholder="要搜索的内容">
+      <input type="submit" value="搜索">
     </form>
   </nav>
 
 
+
   <main> <!-- 网页主体内容 -->
-    <aside> <!-- 侧边栏在主内容右侧 -->
+    <aside id="rightside"> <!-- 侧边栏在主内容右侧 -->
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNavright()">&times;</a>
       <h2>相关链接</h2>
       <p>
         <a href="https://www.bilibili.com/">BiliBili</a><br>
         <a href="https://www.github.com">GitHUb</a><br>
         <a href="https://www.icourse163.org/">Mooc</a><br>
-        <a href="https://meeting.tencent.com/qrcode-login.html?redirect_link=https%3A%2F%2Fmeeting.tencent.com%2Fuser-center%2Fuser-meeting-list%2Fcurrent%3Freload%3D1&phone-number=">TencentMeeting</a><br>
+        <a
+          href="https://meeting.tencent.com/qrcode-login.html?redirect_link=https%3A%2F%2Fmeeting.tencent.com%2Fuser-center%2Fuser-meeting-list%2Fcurrent%3Freload%3D1&phone-number=">TencentMeeting</a><br>
         <a href="https://www.yuketang.cn/web/?next=/v2/web/index">RainClass</a><br>
+
         <!-- 侧边栏有 n 个超链接，略略略…… -->
       </p>
     </aside>
