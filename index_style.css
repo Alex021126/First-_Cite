@@ -82,3 +82,8 @@ aside {
     overflow-y: auto;
     transition: 0.3s;
 }
+/*定义竖屏 css*/
+@media screen and (orientation:portrait) and (max-device-width:600px) {.leftside,aside{display: none;}
+  
+
+}

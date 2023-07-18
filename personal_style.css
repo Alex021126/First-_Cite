@@ -1,8 +1,6 @@
 @import "style.css";
 
-@media screen and(width<500px){.leftside,aside{display: none;}
-  
-}
+
 h1 {
     color: #375e97;
     font-size: 2em;
@@ -93,4 +91,8 @@ table {
     transition: 0.3s;
   }
 
+/*定义竖屏 css*/
+@media screen and (orientation:portrait) and (max-device-width:600px) {.leftside,aside{display: none;}
+  
 
+}
