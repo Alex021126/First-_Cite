@@ -2,97 +2,109 @@
 
 
 h1 {
-    color: #375e97;
-    font-size: 2em;
-    font-family:'Times New Roman', Georgia, Times, serif;
-  
-    
+  color: #375e97;
+  font-size: 2em;
+  font-family: 'Times New Roman', Georgia, Times, serif;
+
+
 }
 
 h2 {
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
+
 aside {
-    width: 20%;
-    max-height: 100vh;
-    padding-left: 0.5rem;
-    margin-left: 0.5rem;
-    float: right;
-    box-shadow: inset 5px 0 5px -5px #29627e;
-    font-style: italic;
-    color: #29627e;
-    height: 100%;
-    overflow-y: auto;
+  position: sticky;
+  top: 3rem;
+  width: 20%;
+  max-height: 100vh;
+  padding-left: 0.5rem;
+  margin-left: 0.5rem;
+  float: right;
+  box-shadow: inset 5px 0 5px -5px #29627e;
+  font-style: italic;
+  color: #29627e;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .job-title {
-    color: #999999;
-    font-weight: bold;
+  color: #999999;
+  font-weight: bold;
 }
+
 /*tables*/
 table {
-    table-layout: fixed;
-    width: 100%;
-    border-collapse: collapse;
-    border: 3px solid purple;
-  }
-  
-  thead th:nth-child(1) {
-    width: 30%;
-  }
-  
-  thead th:nth-child(2) {
-    width: 20%;
-  }
-  
-  thead th:nth-child(3) {
-    width: 15%;
-  }
-  
-  thead th:nth-child(4) {
-    width: 35%;
-  }
-  
-  th,
-  td {
-    padding: 20px;
-  }
-  
-  /* typography */
-  thead th,
-  tfoot th {
-    font-family: 'Rock Salt', cursive;
-  }
-  
-  th {
-    letter-spacing: 2px;
-  }
-  
-  td {
-    letter-spacing: 1px;
-  }
-  
-  tbody td {
-    text-align: center;
-  }
-  
-  tfoot th {
-    text-align: right;
-  }
-  
-  caption {
-    font-family: 'Rock Salt', cursive;
-    padding: 20px;
-    font-style: italic;
-    caption-side: bottom;
-    color: #666;
-    text-align: right;
-    letter-spacing: 1px;
-    transition: 0.3s;
-  }
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px solid purple;
+}
+
+thead th:nth-child(1) {
+  width: 30%;
+}
+
+thead th:nth-child(2) {
+  width: 20%;
+}
+
+thead th:nth-child(3) {
+  width: 15%;
+}
+
+thead th:nth-child(4) {
+  width: 35%;
+}
+
+th,
+td {
+  padding: 20px;
+}
+
+/* typography */
+thead th,
+tfoot th {
+  font-family: 'Rock Salt', cursive;
+}
+
+th {
+  letter-spacing: 2px;
+}
+
+td {
+  letter-spacing: 1px;
+}
+
+tbody td {
+  text-align: center;
+}
+
+tfoot th {
+  text-align: right;
+}
+
+caption {
+  font-family: 'Rock Salt', cursive;
+  padding: 20px;
+  font-style: italic;
+  caption-side: bottom;
+  color: #666;
+  text-align: right;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
 
 /*定义竖屏 css*/
-@media screen and (orientation:portrait) and (max-device-width:600px) {.leftside,aside{display: none;}
-  
+@media screen and (orientation:portrait) and (max-device-width:600px) {
+
+  .leftside,
+  aside {
+    display: none;
+  }
+
+  html {
+    font-size: 12px;
+  }
 
 }

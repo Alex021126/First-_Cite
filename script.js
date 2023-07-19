@@ -22,7 +22,7 @@ info.onclick = function() {
  /*以250px显示左边栏*/
  function openNavleft() {
   document.getElementById("leftside").style.display="block";
-  document.getElementById("leftside").style.width = "250px";
+  document.getElementById("leftside").style.width = "20rem";
 }
 /*隐藏左边栏*/
 function closeNavleft() {
@@ -31,7 +31,7 @@ function closeNavleft() {
  /*以250px显示右边栏*/
  function openNavright() {
   document.getElementById("rightside").style.display="block";
-  document.getElementById("rightside").style.width = "250px";
+  document.getElementById("rightside").style.width = "10rem";
 }
 /*隐藏右边栏*/
 function closeNavright() {

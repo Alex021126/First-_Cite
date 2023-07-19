@@ -7,7 +7,7 @@
   <title>A Website</title>
 
   <meta name="description" content="A Website." />
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <link rel="stylesheet" href="personal_style.css" />
   <script src="script.js" defer></script>
@@ -18,23 +18,16 @@
 
 <body>
   <header> A Website</header>
-
-  <nav> <!-- 本站统一的导航栏 -->
-
-    <div class="index">
-      <span style="font-size:20px; cursor:pointer" onclick="openNavleft()">&#9776; </span>
-      <a href="index.html">主页</a>&ensp;<a href="personal.html">个人</a>
-      <span style="font-size:20px; cursor:pointer" onclick="openNavright()">&#9776; </span>
-    </div>
-    <!-- 共 n 个导航栏项目，省略…… -->
-
+  <nav class="index"><!-- 本站统一的导航栏 -->
+    <span style="font-size:1.5rem; cursor:pointer" onclick="openNavleft()">&#9776; </span>
+    <a href="index.html">主页</a><a href="personal.html">个人</a>
+    <span style="font-size:1.5rem; cursor:pointer" onclick="openNavright()">&#9776; </span>
     <form> <!-- 搜索栏是站点内导航的一个非线性的方式。 -->
-      <input type="search" name="q" placeholder="要搜索的内容">
+      <input type="search" placeholder="要搜索的内容">
       <input type="submit" value="搜索">
     </form>
   </nav>
-
-
+  <!-- 共 n 个导航栏项目，省略…… -->
 
   <main> <!-- 网页主体内容 -->
     <aside id="rightside"> <!-- 侧边栏在主内容右侧 -->
