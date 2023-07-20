@@ -32,10 +32,11 @@ dt {
     font-weight: bold;
 }
 
+
+/*main*/
 ::-webkit-scrollbar {
     display: none;
 }
-
 /*leftside guider*/
 .leftside {
     position: sticky;
@@ -54,7 +55,24 @@ dt {
     transition: 0.3s;
 }
 
-/*main*/
+
+/* guessing number*/
+.guessing-number {
+    width: 60%;
+    min-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .form input[type="number"] {
+    width: 150px;
+  }
+
+  .lastResult {
+    color: white;
+    padding: 3px;
+  }
+
+
 article {
     height: 100vh;
     overflow-y: auto;
