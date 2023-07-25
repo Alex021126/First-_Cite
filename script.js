@@ -7,36 +7,39 @@ info.textContent = 'Below is a dynamic list. Click here to add a new list item. 
 document.body.appendChild(info);
 document.body.appendChild(list);
 
-info.onclick = function() {
+info.onclick = function () {
   const listItem = document.createElement('li');
   const listContent = prompt('What content do you want the list item to have?');
   listItem.textContent = listContent;
   list.appendChild(listItem);
 
-  listItem.onclick = function(e) {
+  listItem.onclick = function (e) {
     e.stopPropagation();
     const listContent = prompt('Enter new content for your list item');
     this.textContent = listContent;
   }
 }
- /*以250px显示左边栏*/
- function openNavleft() {
-  document.getElementById("leftside").style.display="block";
+/*以250px显示左边栏*/
+function openNavleft() {
+  document.getElementById("leftside").style.display = "block";
   document.getElementById("leftside").style.width = "20rem";
 }
 /*隐藏左边栏*/
 function closeNavleft() {
-  document.getElementById("leftside").style.display="none";
+  document.getElementById("leftside").style.display = "none";
 }
- /*以250px显示右边栏*/
- function openNavright() {
-  document.getElementById("rightside").style.display="block";
+/*以250px显示右边栏*/
+function openNavright() {
+  document.getElementById("rightside").style.display = "block";
   document.getElementById("rightside").style.width = "10rem";
 }
 /*隐藏右边栏*/
 function closeNavright() {
-  document.getElementById("rightside").style.display="none";
+  document.getElementById("rightside").style.display = "none";
 }
+
+
+/*guessing number */
 let randomNumber = Math.floor(Math.random() * 100) + 1;
 
 const guesses = document.querySelector('.guesses');
@@ -86,7 +89,7 @@ function setGameOver() {
   guessSubmit.disabled = true;
   resetButton = document.createElement('button');
   resetButton.textContent = 'Start new game';
-  var element=document.getElementById("guessing-number");
+  var element = document.getElementById("guessing-number");
   element.append(resetButton);
   resetButton.addEventListener('click', resetGame);
 }
@@ -109,10 +112,92 @@ function resetGame() {
 
   randomNumber = Math.floor(Math.random() * 100) + 1;
 }
-
-
 guessSubmit.addEventListener('click', checkGuess);
+guessField.focus();
 
+/*Message box*/
+const btn = document.querySelector(".display");
+
+function displayMessage(msgText, msgType) {
+const article = document.querySelector("article");
+const panel = document.createElement("div");
+panel.setAttribute("class", "msgBox");
+article.appendChild(panel);
+
+const msg = document.createElement("p");
+msg.textContent = msgText;
+panel.appendChild(msg);
+
+const closeBtn = document.createElement("button");
+closeBtn.textContent = "x";
+panel.appendChild(closeBtn);
+
+closeBtn.onclick = function () {
+  panel.parentNode.removeChild(panel);
+};
+
+if (msgType === "warning") {
+  msg.style.backgroundImage = "url(icons/warning.png)";
+  panel.style.backgroundColor = "red";
+} else if (msgType === "chat") {
+  msg.style.backgroundImage = "url(icons/chat.png)";
+  panel.style.backgroundColor = "aqua";
+} else {
+  msg.style.paddingLeft = "20px";
+}
+
+}
+btn.onclick = function () {
+  displayMessage("Woo, this is a different message!","chat");
+};
+
+
+
+/*Image Gallery */
+const displayedImage = document.querySelector('.displayed-img');
+const thumbBar = document.querySelector('.thumb-bar');
+
+const btn_dark = document.querySelector('.full-img button');
+const overlay = document.querySelector('.overlay');
+
+/* Declaring the array of image filenames */
+
+const images = ['pic1.jpg', `pic2.jpg`, `pic3.jpg`, `pic4.jpg`, `pic5.jpg`];
+const alts = {
+  'pic1.jpg' : 'ginkgo',
+  'pic2.jpg' : 'Rock that looks like a wave',
+  'pic3.jpg' : 'Purple and white pansies',
+  'pic4.jpg' : 'Section of wall from a pharoah\'s tomb',
+  'pic5.jpg' : 'Large moth on a leaf'
+}
+
+/* Looping through images */
+
+for (const image of images) {
+  const newImage = document.createElement('img');
+  newImage.setAttribute('src', `image/${image}`);
+  newImage.setAttribute('alt', alts[image]);
+  thumbBar.appendChild(newImage);
+  newImage.addEventListener('click', e => {
+    displayedImage.src = e.target.src;
+    displayedImage.alt = e.target.alt;
+  });
+}
+
+/* Wiring up the Darken/Lighten button */
+
+btn_dark.addEventListener('click', () => {
+  const btn_darkClass = btn_dark.getAttribute('class');
+  if (btn_darkClass === 'dark') {
+    btn_dark.setAttribute('class','light');
+    btn_dark.textContent = 'Lighten';
+    overlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
+  } else {
+    btn_dark.setAttribute('class','dark');
+    btn_dark.textContent = 'Darken';
+    overlay.style.backgroundColor = 'rgba(0,0,0,0)';
+  }
+});
 
 
 

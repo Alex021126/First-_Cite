@@ -37,6 +37,7 @@ dt {
 ::-webkit-scrollbar {
     display: none;
 }
+
 /*leftside guider*/
 .leftside {
     position: sticky;
@@ -55,31 +56,125 @@ dt {
     transition: 0.3s;
 }
 
+aside {
+    position: sticky;
+    top: 3rem;
+    right: 0;
+    width: 20%;
+    max-height: 100vh;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    float: right;
+    box-shadow: inset 5px 0 5px -5px #29627e;
+    font-style: italic;
+    color: #29627e;
+    height: 100%;
+    overflow-y: auto;
+    transition: 0.3s;
+}
+
+/*Image Gallery*/
+.ImageGallery {
+    width: 98%;
+    margin: 0 auto;
+}
+
+.full-img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.full-img button{
+    border: 0;
+    background: rgba(150, 150, 150, 0.6);
+    text-shadow: 1px 1px 1px white;
+    border: 1px solid #999;
+    position: absolute;
+    cursor: pointer;
+    top: 2px;
+    left: 2px;
+}
+
+.thumb-bar img {
+    display: block;
+    width: 20%;
+    float: left;
+    cursor: pointer;
+}
+
 
 /* guessing number*/
 .guessing-number {
+
+    clear: left;
     width: 60%;
     min-width: 400px;
     margin: 0 auto;
-  }
-  
-  .form input[type="number"] {
-    width: 150px;
-  }
+}
 
-  .lastResult {
+.form input[type="number"] {
+    width: 150px;
+}
+
+.lastResult {
     color: white;
     padding: 3px;
-  }
+}
+
+/*message box*/
+
+.msgBox {
+    border-radius: 0.5em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    background: #eee;
+}
+
+.msgBox p {
+    line-height: 1.5;
+    padding: 10px 20px;
+    color: #333;
+    padding-left: 82px;
+    background-position: 25px center;
+    background-repeat: no-repeat;
+
+}
+
+.msgBox button {
+    background: none;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1.1rem;
+    color: #aaa;
+}
 
 
+
+/*content*/
 article {
     height: 100vh;
     overflow-y: auto;
     padding: 1em;
 
 }
-img{
+
+img {
     max-width: 100%;
     border-radius: 0.5em;
 }
@@ -98,22 +193,6 @@ iframe {
 
 }
 
-aside {
-    position: sticky;
-    top: 3rem;
-    right: 0;
-    width: 20%;
-    max-height: 100vh;
-    padding: 0.5rem;
-    margin: 0.5rem;
-    float: right;
-    box-shadow: inset 5px 0 5px -5px #29627e;
-    font-style: italic;
-    color: #29627e;
-    height: 100%;
-    overflow-y: auto;
-    transition: 0.3s;
-}
 
 /*定义竖屏 css*/
 @media screen and (orientation:portrait) and (max-device-width:600px) {
