@@ -119,36 +119,36 @@ guessField.focus();
 const btn = document.querySelector(".display");
 
 function displayMessage(msgText, msgType) {
-const article = document.querySelector("article");
-const panel = document.createElement("div");
-panel.setAttribute("class", "msgBox");
-article.appendChild(panel);
+  const article = document.querySelector("article");
+  const panel = document.createElement("div");
+  panel.setAttribute("class", "msgBox");
+  article.appendChild(panel);
 
-const msg = document.createElement("p");
-msg.textContent = msgText;
-panel.appendChild(msg);
+  const msg = document.createElement("p");
+  msg.textContent = msgText;
+  panel.appendChild(msg);
 
-const closeBtn = document.createElement("button");
-closeBtn.textContent = "x";
-panel.appendChild(closeBtn);
+  const closeBtn = document.createElement("button");
+  closeBtn.textContent = "x";
+  panel.appendChild(closeBtn);
 
-closeBtn.onclick = function () {
-  panel.parentNode.removeChild(panel);
-};
+  closeBtn.onclick = function () {
+    panel.parentNode.removeChild(panel);
+  };
 
-if (msgType === "warning") {
-  msg.style.backgroundImage = "url(icons/warning.png)";
-  panel.style.backgroundColor = "red";
-} else if (msgType === "chat") {
-  msg.style.backgroundImage = "url(icons/chat.png)";
-  panel.style.backgroundColor = "aqua";
-} else {
-  msg.style.paddingLeft = "20px";
-}
+  if (msgType === "warning") {
+    msg.style.backgroundImage = "url(icons/warning.png)";
+    panel.style.backgroundColor = "red";
+  } else if (msgType === "chat") {
+    msg.style.backgroundImage = "url(icons/chat.png)";
+    panel.style.backgroundColor = "aqua";
+  } else {
+    msg.style.paddingLeft = "20px";
+  }
 
 }
 btn.onclick = function () {
-  displayMessage("Woo, this is a different message!","chat");
+  displayMessage("Woo, this is a different message!", "chat");
 };
 
 
@@ -164,11 +164,11 @@ const overlay = document.querySelector('.overlay');
 
 const images = ['pic1.jpg', `pic2.jpg`, `pic3.jpg`, `pic4.jpg`, `pic5.jpg`];
 const alts = {
-  'pic1.jpg' : 'ginkgo',
-  'pic2.jpg' : 'Rock that looks like a wave',
-  'pic3.jpg' : 'Purple and white pansies',
-  'pic4.jpg' : 'Section of wall from a pharoah\'s tomb',
-  'pic5.jpg' : 'Large moth on a leaf'
+  'pic1.jpg': 'ginkgo',
+  'pic2.jpg': 'Rock that looks like a wave',
+  'pic3.jpg': 'Purple and white pansies',
+  'pic4.jpg': 'Section of wall from a pharoah\'s tomb',
+  'pic5.jpg': 'Large moth on a leaf'
 }
 
 /* Looping through images */
@@ -189,15 +189,75 @@ for (const image of images) {
 btn_dark.addEventListener('click', () => {
   const btn_darkClass = btn_dark.getAttribute('class');
   if (btn_darkClass === 'dark') {
-    btn_dark.setAttribute('class','light');
+    btn_dark.setAttribute('class', 'light');
     btn_dark.textContent = 'Lighten';
     overlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
   } else {
-    btn_dark.setAttribute('class','dark');
+    btn_dark.setAttribute('class', 'dark');
     btn_dark.textContent = 'Darken';
     overlay.style.backgroundColor = 'rgba(0,0,0,0)';
   }
 });
+
+/*import JSON*/
+var header = document.querySelector(".header");
+var section = document.querySelector("section");
+
+var requestURL =
+  "https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json";
+var request = new XMLHttpRequest();
+request.open("GET", requestURL);
+request.responseType = "json";
+request.send();
+
+request.onload = function () {
+  var superHeroes = request.response;
+  populateHeader(superHeroes);
+  showHeroes(superHeroes);
+};
+
+function populateHeader(jsonObj) {
+  var myH1 = document.createElement("h1");
+  myH1.textContent = jsonObj["squadName"];
+  header.appendChild(myH1);
+
+  var myPara = document.createElement("p");
+  myPara.textContent =
+    "Hometown: " + jsonObj["homeTown"] + " // Formed: " + jsonObj["formed"];
+  header.appendChild(myPara);
+}
+function showHeroes(jsonObj) {
+  var heroes = jsonObj["members"];
+
+  for (i = 0; i < heroes.length; i++) {
+    var myArticle = document.createElement("article");
+    var myH2 = document.createElement("h2");
+    var myPara1 = document.createElement("p");
+    var myPara2 = document.createElement("p");
+    var myPara3 = document.createElement("p");
+    var myList = document.createElement("ul");
+
+    myH2.textContent = heroes[i].name;
+    myPara1.textContent = "Secret identity: " + heroes[i].secretIdentity;
+    myPara2.textContent = "Age: " + heroes[i].age;
+    myPara3.textContent = "Superpowers:";
+
+    var superPowers = heroes[i].powers;
+    for (j = 0; j < superPowers.length; j++) {
+      var listItem = document.createElement("li");
+      listItem.textContent = superPowers[j];
+      myList.appendChild(listItem);
+    }
+
+    myArticle.appendChild(myH2);
+    myArticle.appendChild(myPara1);
+    myArticle.appendChild(myPara2);
+    myArticle.appendChild(myPara3);
+    myArticle.appendChild(myList);
+
+    section.appendChild(myArticle);
+  }
+}
 
 
 
