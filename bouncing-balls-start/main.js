@@ -42,7 +42,6 @@ function Ball(x, y, velX, velY, color, size, exists) {
 
 }
 
-
 Ball.prototype.draw = function () {
   ctx.beginPath();
   ctx.fillStyle = this.color;
@@ -83,7 +82,6 @@ Ball.prototype.collisionDetect = function () {
     }
   }
 };
-
 
 let balls = [];
 
@@ -152,9 +150,10 @@ EvilCircle.prototype.setControls = function () {
     }
   };
 }
+
 let balls_count = 25
 EvilCircle.prototype.collisionDetect = function () {
-  
+
   for (let j = 0; j < balls.length; j++) {
     if (balls[j].exists === true) {
       const dx = this.x - balls[j].x;
@@ -172,13 +171,12 @@ EvilCircle.prototype.collisionDetect = function () {
 let size = 10;
 evilcircle = new EvilCircle(random(0 + size, width - size),
   random(0 + size, height - size),
-  20,
-  20,
+  30,
+  30,
   true,
   "rgb(255,255,255)",
   size,
-);
-
+)
 
 function loop() {
   ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
@@ -190,9 +188,9 @@ function loop() {
 
   for (let i = 0; i < balls.length; i++) {
     if (balls[i].exists === true) {
-    balls[i].draw();
-    balls[i].collisionDetect();
-    balls[i].update();
+      balls[i].draw();
+      balls[i].collisionDetect();
+      balls[i].update();
     }
   }
 
