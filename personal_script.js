@@ -47,7 +47,7 @@ verseChoose.addEventListener("change", () => {
 });
 function updateDisplay(verse) {
   verse = verse.replace(" ", "").toLowerCase();
-  const url = `txt/${verse}.txt`;
+  const url = `text/${verse}.txt`;
   // 调用 `fetch()`，传入 URL。
   fetch(url)
     // fetch() 返回一个 promise。当我们从服务器收到响应时，
