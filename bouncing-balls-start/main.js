@@ -106,12 +106,43 @@ function EvilCircle(x, y, velX, velY, exists, color, size) {
   this.size = size;
 }
 
+
+var curX;
+var curY;
+var pressed = false;
+
+document.onmousemove = function (e) {
+  curX = window.Event
+    ? e.pageX
+    : e.clientX +
+    (document.documentElement.scrollLeft
+      ? document.documentElement.scrollLeft
+      : document.body.scrollLeft);
+  curY = window.Event
+    ? e.pageY
+    : e.clientY +
+    (document.documentElement.scrollTop
+      ? document.documentElement.scrollTop
+      : document.body.scrollTop);
+};
+
+canvas.onmousedown = function () {
+  pressed = true;
+};
+
+canvas.onmouseup = function () {
+  pressed = false;
+};
+
+
 EvilCircle.prototype.draw = function () {
   ctx.beginPath();
   ctx.lineWidth = 3;
   ctx.strokeStyle = this.color;
-  ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
-  ctx.stroke();
+    this.x = curX;
+    this.y = curY;
+    ctx.arc(curX, curY, this.size, 0, 2 * Math.PI);
+    ctx.stroke();
 }
 
 EvilCircle.prototype.checkBounds = function () {
@@ -197,6 +228,3 @@ function loop() {
   requestAnimationFrame(loop);
 }
 loop();
-
-
-

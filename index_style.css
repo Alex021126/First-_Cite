@@ -220,6 +220,7 @@ section {
 section article {
     width: 33%;
     float: left;
+    height:fit-content;
 }
 
 section p {

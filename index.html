@@ -31,66 +31,22 @@
   <!-- 共 n 个导航栏项目，省略…… -->
   <main> <!-- 网页主体内容 -->
     <div id="leftside" class="leftside">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNavleft()">&times;</a>
-      <h2>Shopping (unordered) list</h2>
-      <p>
-        Paragraph for reference, paragraph for reference, paragraph for reference,
-        paragraph for reference, paragraph for reference, paragraph for reference.
-      </p>
-
+     
+      <h2> Menu <a href="javascript:void(0)" class="closebtn" onclick="closeNavleft()">&times;</a></h2>
       <ul>
-        <li>Hummus</li>
-        <li>Pita</li>
-        <li>Green salad</li>
-        <li>Halloumi</li>
+        <li> <a href="#Imagegallery">Image gallery </a></li>
+        <li> <a href="#Guessingnumber">Guessing number </a></li>
+        <li> <a href="#Article">Article </a></li>
+        <li> <a href="#Video">Video</a></br></li>
+        <li> <a href="#foot">Contact author</a></br></li>
       </ul>
-
-      <h2>Recipe (ordered) list</h2>
-
-      <p>
-        Paragraph for reference, paragraph for reference, paragraph for reference,
-        paragraph for reference, paragraph for reference, paragraph for reference.
-      </p>
-
-      <ol>
-        <li>Toast pita, leave to cool, then slice down the edge.</li>
-        <li>
-          Fry the halloumi in a shallow, non-stick pan, until browned on both sides.
-        </li>
-        <li>Wash and chop the salad.</li>
-        <li>Fill pita with salad, hummus, and fried halloumi.</li>
-      </ol>
-
-      <h2>Ingredient description list</h2>
-
-      <p>
-        Paragraph for reference, paragraph for reference, paragraph for reference,
-        paragraph for reference, paragraph for reference, paragraph for reference.
-      </p>
-
-      <dl>
-        <dt>Hummus</dt>
-        <dd>
-          A thick dip/sauce generally made from chick peas blended with tahini, lemon
-          juice, salt, garlic, and other ingredients.
-        </dd>
-        <dt>Pita</dt>
-        <dd>A soft, slightly leavened flatbread.</dd>
-        <dt>Halloumi</dt>
-        <dd>
-          A semi-hard, unripened, brined cheese with a higher-than-usual melting
-          point, usually made from goat/sheep milk.
-        </dd>
-        <dt>Green salad</dt>
-        <dd>That green healthy stuff that many of us just use to garnish kebabs.</dd>
-      </dl>
     </div>
     <aside id="rightside"> <!-- 侧边栏在主内容右侧 -->
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNavright()">&times;</a>
-      <h2>相关链接</h2>
+    
+      <h2>Relative Links <a href="javascript:void(0)" class="closebtn" onclick="closeNavright()">&times;</a></h2>
       <p>
         <a href="https://www.bilibili.com/">BiliBili</a><br>
-        <a href="https://www.github.com">GitHUb</a><br>
+        <a href="https://www.github.com">GitHub</a><br>
         <a href="https://www.icourse163.org/">Mooc</a><br>
         <a
           href="https://meeting.tencent.com/qrcode-login.html?redirect_link=https%3A%2F%2Fmeeting.tencent.com%2Fuser-center%2Fuser-meeting-list%2Fcurrent%3Freload%3D1&phone-number=">TencentMeeting</a><br>
@@ -99,11 +55,11 @@
         <!-- 侧边栏有 n 个超链接，略略略…… -->
       </p>
     </aside>
-
+   
     <article> <!-- 此处包含一个 article（一篇文章），内容略…… -->
+      <a name="Imagegallery"></a>
       <nav class="ImageGallery">
         <h1>Image gallery </h1>
-
         <div class="full-img">
           <img class="displayed-img" src="image/pic1.jpg" alt="ginkgo">
           <div class="overlay"></div>
@@ -116,6 +72,7 @@
         </div>
       </nav>
       <br>
+      <a name="Guessingnumber"></a>
       <nav id="guessing-number" class="guessing-number">
 
         <h1>Number guessing game</h1>
@@ -141,7 +98,7 @@
       <div class="header"></div>
 
       <section></section>
-      
+      <a name="Article"> </a>
       <h1>三国演义</h1>
       <p>罗贯中</p>
       <h2>第一回 宴桃园豪杰三结义 斩黄巾英雄首立功</h2>
@@ -155,7 +112,7 @@
         <figcaption>申鹤</figcaption>
       </figure>
 
-
+      <a name="Video"></a>
       <video controls><!-- muted -->
         <source src="video/League of Legends .mp4" type="video/mp4">
         <track kind="subtitles" src="subtitles.vtt" srclang="zh-CN">
@@ -185,7 +142,7 @@
   </main>
 
   <footer> <!-- 本站所有网页的统一页脚 -->
-
+    <a name="foot"></a>
     <br>
     <p>Contact the author of this page:</p>
 
