@@ -1,7 +1,7 @@
 h1 {
-  color: #1d4ed8;
+  color: #1d1d1f;
   font-size: clamp(1.8rem, 1.3rem + 1.5vw, 2.6rem);
-  font-family: 'Times New Roman', Georgia, Times, serif;
+  font-family: "SF Pro Display", "PingFang SC", "Hiragino Sans GB", sans-serif;
   letter-spacing: 0.04em;
 }
 
@@ -24,9 +24,9 @@ h2 {
   grid-column: 2;
   min-width: 0;
   padding: 1.75rem;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(239, 246, 255, 0.84));
-  border-radius: 1rem;
-  box-shadow: 0 16px 36px rgba(42, 61, 80, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(247, 247, 249, 0.92));
+  border-radius: 1.3rem;
+  box-shadow: 0 16px 30px rgba(17, 24, 39, 0.06);
 }
 
 .personal-layout #rightside {
@@ -55,8 +55,8 @@ aside {
 }
 
 .job-title {
-  color: #999999;
-  font-weight: bold;
+  color: #6e6e73;
+  font-weight: 600;
   margin-bottom: 1rem;
   font-size: 1.1rem;
 }
@@ -66,10 +66,10 @@ table {
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
-  border: 2px solid rgba(29, 78, 216, 0.25);
+  border: 1px solid rgba(17, 24, 39, 0.08);
   background: rgba(255, 255, 255, 0.88);
-  border-radius: 0.75rem;
-  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08);
+  border-radius: 1rem;
+  box-shadow: 0 14px 28px rgba(17, 24, 39, 0.06);
 }
 
 thead th:nth-child(1) {
@@ -137,11 +137,11 @@ caption {
 }
 
 .grid li {
-  border: 0.35rem solid #1d4ed8;
+  border: 1px solid rgba(17, 24, 39, 0.08);
   padding: 1rem;
   border-radius: 1em;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(224, 242, 254, 0.78));
-  box-shadow: 0 14px 24px rgba(15, 23, 42, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(247, 247, 249, 0.92));
+  box-shadow: 0 12px 22px rgba(17, 24, 39, 0.05);
 }
 
 html,
@@ -156,7 +156,7 @@ pre {
   background-color: white;
   border-radius: 1rem;
   overflow-x: auto;
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 12px 22px rgba(17, 24, 39, 0.05);
 }
 
 label {
@@ -186,6 +186,10 @@ form {
     grid-template-columns: 1fr;
   }
 
+  .personal-layout > * {
+    grid-column: 1 / -1;
+  }
+
   .personal-layout #leftside,
   aside {
     display: none;
@@ -209,6 +213,21 @@ form {
 
   .personal-layout article {
     padding: 1rem;
+  }
+
+  .personal-layout {
+    gap: 1rem;
+  }
+
+  .personal-layout > h1,
+  .personal-layout > h2 {
+    margin: 0.2rem 0;
+  }
+
+  .personal-layout > form {
+    background: rgba(255, 255, 255, 0.72);
+    padding: 0.85rem;
+    border-radius: 0.9rem;
   }
 
   .grid {

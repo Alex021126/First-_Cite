@@ -42,9 +42,9 @@ dt {
     width: 98%;
     margin: 0 auto;
     padding: 1.2rem;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(239, 246, 255, 0.66));
-    border: 1px solid rgba(91, 125, 155, 0.14);
-    border-radius: 1.2rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(248, 248, 250, 0.92));
+    border: 1px solid rgba(17, 24, 39, 0.06);
+    border-radius: 1.5rem;
 }
 
 .full-img {
@@ -53,8 +53,8 @@ dt {
     width: 100%;
     height: auto;
     overflow: hidden;
-    border-radius: 1rem;
-    box-shadow: 0 20px 44px rgba(15, 23, 42, 0.12);
+    border-radius: 1.3rem;
+    box-shadow: 0 18px 36px rgba(17, 24, 39, 0.08);
 }
 
 .displayed-img {
@@ -75,7 +75,7 @@ dt {
 
 .full-img button {
     border: 0;
-    background: rgba(255, 255, 255, 0.78);
+    background: rgba(255, 255, 255, 0.92);
     position: absolute;
     cursor: pointer;
     top: 0.8rem;
@@ -83,7 +83,7 @@ dt {
     z-index: 1;
     border-radius: 999px;
     padding: 0.5rem 0.9rem;
-    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
+    box-shadow: 0 10px 18px rgba(17, 24, 39, 0.08);
 }
 
 .thumb-bar {
@@ -104,7 +104,7 @@ dt {
 
 .thumb-bar img:hover {
     transform: scale(1.05);
-    box-shadow: 0 14px 24px rgba(37, 99, 235, 0.24);
+    box-shadow: 0 12px 20px rgba(17, 24, 39, 0.12);
 }
 
 /* guessing number*/
@@ -113,9 +113,9 @@ dt {
     max-width: 42rem;
     margin: 0 auto;
     padding: 1.25rem;
-    background: linear-gradient(180deg, rgba(239, 246, 255, 0.95), rgba(236, 253, 245, 0.9));
-    border-radius: 1rem;
-    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.08);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(247, 247, 249, 0.94));
+    border-radius: 1.3rem;
+    box-shadow: 0 16px 30px rgba(17, 24, 39, 0.06);
 }
 
 .form input[type="number"] {
@@ -146,7 +146,7 @@ dt {
 .form input[type="submit"],
 .display,
 .game-reset {
-    background: linear-gradient(135deg, #0f766e, #2563eb);
+    background: linear-gradient(135deg, #0071e3, #0077ed);
     color: white;
     font-weight: 700;
     cursor: pointer;
@@ -179,9 +179,9 @@ dt {
     left: 50%;
     transform: translate(-50%, -50%);
     width: min(92vw, 32rem);
-    background: #eff6ff;
+    background: #ffffff;
     z-index: 40;
-    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 22px 44px rgba(17, 24, 39, 0.18);
 }
 
 .msgBox p {
@@ -264,9 +264,9 @@ section {
 section article {
     width: 100%;
     height: fit-content;
-    background: rgba(236, 246, 253, 0.85);
-    border-radius: 0.9rem;
-    box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08);
+    background: rgba(255, 255, 255, 0.88);
+    border-radius: 1.1rem;
+    box-shadow: 0 12px 22px rgba(17, 24, 39, 0.06);
 }
 
 section p {
@@ -288,9 +288,9 @@ figure {
     width: min(100%, 18rem);
     text-align: center;
     padding: 1rem;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(224, 242, 254, 0.65));
-    border-radius: 1rem;
-    box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 246, 248, 0.92));
+    border-radius: 1.2rem;
+    box-shadow: 0 14px 28px rgba(17, 24, 39, 0.07);
 }
 
 audio {
