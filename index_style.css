@@ -1,6 +1,7 @@
 /* lists */
 h2 {
     font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+    color: #0f172a;
 }
 
 ol {
@@ -48,7 +49,8 @@ dt {
     width: 100%;
     height: auto;
     overflow: hidden;
-    border-radius: 0.8rem;
+    border-radius: 1rem;
+    box-shadow: 0 20px 44px rgba(15, 23, 42, 0.12);
 }
 
 .displayed-img {
@@ -69,16 +71,15 @@ dt {
 
 .full-img button {
     border: 0;
-    background: rgba(150, 150, 150, 0.6);
-    text-shadow: 1px 1px 1px white;
-    border: 1px solid #999;
+    background: rgba(255, 255, 255, 0.78);
     position: absolute;
     cursor: pointer;
-    top: 2px;
-    left: 2px;
+    top: 0.8rem;
+    left: 0.8rem;
     z-index: 1;
     border-radius: 999px;
-    padding: 0.4rem 0.75rem;
+    padding: 0.5rem 0.9rem;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
 }
 
 .thumb-bar {
@@ -93,12 +94,13 @@ dt {
     max-width: 120px;
     min-width: 88px;
     cursor: pointer;
-    border-radius: 0.3rem;
-    transition: transform 0.2s ease;
+    border-radius: 0.7rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .thumb-bar img:hover {
     transform: scale(1.05);
+    box-shadow: 0 14px 24px rgba(37, 99, 235, 0.24);
 }
 
 /* guessing number*/
@@ -106,9 +108,10 @@ dt {
     width: 100%;
     max-width: 42rem;
     margin: 0 auto;
-    padding: 1rem;
-    background: rgba(236, 246, 253, 0.85);
-    border-radius: 0.9rem;
+    padding: 1.25rem;
+    background: linear-gradient(180deg, rgba(239, 246, 255, 0.95), rgba(236, 253, 245, 0.9));
+    border-radius: 1rem;
+    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.08);
 }
 
 .form input[type="number"] {
@@ -122,9 +125,33 @@ dt {
     align-items: center;
 }
 
+.form input,
+.display,
+.game-reset {
+    min-height: 2.5rem;
+    border-radius: 999px;
+    border: 0;
+    padding: 0.1rem 1rem;
+}
+
+.form input[type="number"] {
+    border: 1px solid rgba(103, 137, 171, 0.32);
+    background: white;
+}
+
+.form input[type="submit"],
+.display,
+.game-reset {
+    background: linear-gradient(135deg, #0f766e, #2563eb);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
 .lastResult {
     color: white;
-    padding: 3px;
+    padding: 0.45rem 0.7rem;
+    border-radius: 0.6rem;
 }
 
 @media (max-width: 600px) {
@@ -142,13 +169,13 @@ dt {
 /*message box*/
 
 .msgBox {
-    border-radius: 0.5em;
+    border-radius: 1em;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: min(92vw, 32rem);
-    background: #eee;
+    background: #eff6ff;
     z-index: 40;
     box-shadow: 0 16px 42px rgba(0, 0, 0, 0.24);
 }
@@ -200,8 +227,7 @@ iframe {
 }
 
 
-.header h1,
-h2 {
+.header h1 {
     font-family: 'Faster One', cursive;
 }
 
@@ -230,6 +256,7 @@ section article {
     height: fit-content;
     background: rgba(236, 246, 253, 0.85);
     border-radius: 0.9rem;
+    box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08);
 }
 
 section p {
