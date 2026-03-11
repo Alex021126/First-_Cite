@@ -1,0 +1,286 @@
+/* lists */
+h2 {
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+}
+
+ol {
+    list-style-type: upper-roman;
+}
+
+ul,
+ol,
+dl,
+p {
+    font-size: clamp(1rem, 0.95rem + 0.7vw, 1.3rem);
+}
+
+li,
+p {
+    line-height: 1.5;
+}
+
+/* 描述列表样式 */
+
+dd,
+dt {
+    line-height: 1.5;
+}
+
+dt {
+    font-weight: bold;
+}
+
+/* Hide scrollbars for aesthetic */
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+/*Image Gallery*/
+.ImageGallery {
+    width: 98%;
+    margin: 0 auto;
+}
+
+.full-img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 0.8rem;
+}
+
+.displayed-img {
+    display: block;
+    width: 100%;
+    max-height: min(60vh, 42rem);
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.full-img button {
+    border: 0;
+    background: rgba(150, 150, 150, 0.6);
+    text-shadow: 1px 1px 1px white;
+    border: 1px solid #999;
+    position: absolute;
+    cursor: pointer;
+    top: 2px;
+    left: 2px;
+    z-index: 1;
+    border-radius: 999px;
+    padding: 0.4rem 0.75rem;
+}
+
+.thumb-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.thumb-bar img {
+    flex: 1 1 calc(20% - 0.5rem);
+    max-width: 120px;
+    min-width: 88px;
+    cursor: pointer;
+    border-radius: 0.3rem;
+    transition: transform 0.2s ease;
+}
+
+.thumb-bar img:hover {
+    transform: scale(1.05);
+}
+
+/* guessing number*/
+.guessing-number {
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 1rem;
+    background: rgba(236, 246, 253, 0.85);
+    border-radius: 0.9rem;
+}
+
+.form input[type="number"] {
+    width: 150px;
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.lastResult {
+    color: white;
+    padding: 3px;
+}
+
+@media (max-width: 600px) {
+    .form input[type="number"],
+    .form input[type="submit"] {
+        width: 100%;
+        max-width: none;
+    }
+
+    .guessing-number {
+        padding: 1rem;
+    }
+}
+
+/*message box*/
+
+.msgBox {
+    border-radius: 0.5em;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(92vw, 32rem);
+    background: #eee;
+    z-index: 40;
+    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.24);
+}
+
+.msgBox p {
+    line-height: 1.5;
+    padding: 10px 20px;
+    color: #333;
+    padding-left: 82px;
+    background-position: 25px center;
+    background-repeat: no-repeat;
+
+}
+
+.msgBox button {
+    background: none;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1.1rem;
+    color: #aaa;
+}
+
+
+
+/*content*/
+article {
+    padding: 1em;
+}
+
+img {
+    max-width: 100%;
+    border-radius: 0.5em;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5em;
+
+}
+
+iframe {
+    width: 100%;
+    min-height: 22rem;
+    border-radius: 0.5em;
+
+}
+
+
+.header h1,
+h2 {
+    font-family: 'Faster One', cursive;
+}
+
+/* header styles */
+
+.header h1 {
+    font-size: clamp(2rem, 4vw, 4rem);
+    text-align: center;
+}
+
+.header p {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* section styles */
+section {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+section article {
+    width: 100%;
+    height: fit-content;
+    background: rgba(236, 246, 253, 0.85);
+    border-radius: 0.9rem;
+}
+
+section p {
+    margin: 5px 0;
+}
+
+section ul {
+    margin-top: 0;
+}
+
+.header h2 {
+    font-size: 2.5rem;
+    letter-spacing: -5px;
+    margin-bottom: 10px;
+}
+
+figure {
+    margin: 1.5rem auto;
+    width: min(100%, 18rem);
+    text-align: center;
+}
+
+audio {
+    width: min(100%, 28rem);
+}
+
+@media (max-width: 900px) {
+    section {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .ImageGallery {
+        width: 100%;
+    }
+
+    .thumb-bar {
+        justify-content: flex-start;
+    }
+
+    .thumb-bar img {
+        flex: 1 1 calc(50% - 0.5rem);
+        max-width: none;
+    }
+
+    section {
+        grid-template-columns: 1fr;
+    }
+
+    iframe {
+        min-height: 16rem;
+    }
+}

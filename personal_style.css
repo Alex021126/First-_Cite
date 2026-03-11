@@ -1,0 +1,190 @@
+h1 {
+  color: #375e97;
+  font-size: clamp(1.8rem, 1.3rem + 1.5vw, 2.6rem);
+  font-family: 'Times New Roman', Georgia, Times, serif;
+}
+
+h2 {
+  font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.7rem);
+}
+
+.personal-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(15rem, 18rem);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.personal-layout article {
+  min-width: 0;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.78);
+  border-radius: 1rem;
+  box-shadow: 0 12px 32px rgba(42, 61, 80, 0.08);
+}
+
+.personal-layout > h1,
+.personal-layout > form,
+.personal-layout > h2,
+.personal-layout > pre,
+.personal-layout > table,
+.personal-layout > .grid {
+  grid-column: 1 / -1;
+}
+
+aside {
+  position: sticky;
+  top: 7rem;
+  width: 100%;
+  margin: 0;
+  padding: 1rem;
+  box-shadow: inset 5px 0 5px -5px #29627e;
+  font-style: italic;
+  color: #29627e;
+}
+
+.job-title {
+  color: #999999;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+/*tables*/
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px solid purple;
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 0.75rem;
+}
+
+thead th:nth-child(1) {
+  width: 30%;
+}
+
+thead th:nth-child(2) {
+  width: 20%;
+}
+
+thead th:nth-child(3) {
+  width: 15%;
+}
+
+thead th:nth-child(4) {
+  width: 35%;
+}
+
+th,
+td {
+  padding: 1rem;
+}
+
+/* typography */
+thead th,
+tfoot th {
+  font-family: 'Rock Salt', cursive;
+}
+
+th {
+  letter-spacing: 2px;
+}
+
+td {
+  letter-spacing: 1px;
+}
+
+tbody td {
+  text-align: center;
+}
+
+tfoot th {
+  text-align: right;
+}
+
+caption {
+  font-family: 'Rock Salt', cursive;
+  padding: 20px;
+  font-style: italic;
+  caption-side: bottom;
+  color: #666;
+  text-align: right;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+/*Grid*/
+.grid {
+  background-color: initial;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+.grid li {
+  border: 0.5rem solid #371a5c;
+  padding: 1rem;
+  border-radius: 0.5em;
+  
+}
+
+html,
+pre {
+  font-family: sans-serif;
+}
+
+pre {
+  line-height: 1.5;
+  letter-spacing: 0.05rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+}
+
+label {
+  display: inline-block;
+  width: auto;
+  margin-right: 1rem;
+}
+
+select {
+  width: min(100%, 22rem);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .personal-layout {
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  th,
+  td {
+    padding: 0.75rem;
+  }
+
+  caption {
+    text-align: left;
+  }
+
+  .personal-layout article {
+    padding: 1rem;
+  }
+}
