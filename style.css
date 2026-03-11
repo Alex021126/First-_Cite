@@ -18,8 +18,8 @@ html {
     radial-gradient(circle at top right, rgba(230, 236, 245, 0.7), transparent 24%),
     linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 48%, var(--bg-bottom) 100%);
   background-color: #f5f5f7;
-  font-size: 18px;
-  font-family: "Hiragino Sans GB", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 16px;
+  font-family: "SF Pro Text", "SF Pro Display", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
@@ -38,11 +38,39 @@ body {
   color: var(--text-main);
 }
 
+body header,
+body .index,
+body main,
+body footer {
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body:not(.page-ready) header,
+body:not(.page-ready) .index,
+body:not(.page-ready) main,
+body:not(.page-ready) footer {
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(10px);
+}
+
+body.page-leaving header,
+body.page-leaving .index,
+body.page-leaving main,
+body.page-leaving footer {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.985);
+  filter: blur(8px);
+}
+
 header {
-  font-size: clamp(1.2rem, 1.2vw + 1rem, 1.7rem);
-  padding: 1.1rem 1rem 0.8rem;
+  font-size: clamp(1rem, 0.6vw + 0.95rem, 1.2rem);
+  padding: 0.95rem 1rem 0.7rem;
   text-align: center;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   font-weight: 600;
   color: var(--text-main);
   background: rgba(251, 251, 253, 0.88);
@@ -83,7 +111,7 @@ main {
   width: 100%;
   max-width: 62rem;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 1.35rem;
   background: var(--surface);
   border: 1px solid var(--line-soft);
   border-radius: 1.4rem;
@@ -112,8 +140,8 @@ aside {
 aside h2 {
   margin-top: 0;
   margin-bottom: 0.9rem;
-  font-size: 1.05rem;
-  letter-spacing: 0.06em;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
   text-transform: none;
   color: var(--text-main);
 }
@@ -268,7 +296,7 @@ aside h2 {
   justify-content: space-between;
   gap: 0.75rem;
   background: rgba(251, 251, 253, 0.82);
-  padding: 0.8rem 1rem;
+  padding: 0.7rem 0.95rem;
   margin: 0.35rem auto 0.75rem;
   width: min(100%, 1440px);
   border: 1px solid var(--line-soft);
@@ -278,7 +306,7 @@ aside h2 {
 }
 
 .index a {
-  font-size: 0.98rem;
+  font-size: 0.88rem;
   font-weight: 500;
   white-space: nowrap;
   color: var(--text-main);
@@ -294,7 +322,7 @@ aside h2 {
 
 .index form input[type="search"] {
   width: min(18rem, 100%);
-  min-height: 2.4rem;
+  min-height: 2.2rem;
   border-radius: 999px;
   padding: 0.1rem 0.9rem;
   border: 1px solid rgba(103, 137, 171, 0.28);
@@ -304,8 +332,8 @@ aside h2 {
 
 .index form input[type="submit"] {
   width: fit-content;
-  min-height: 2.4rem;
-  padding: 0.1rem 1rem;
+  min-height: 2.2rem;
+  padding: 0.1rem 0.9rem;
   border-radius: 999px;
   border: 0;
   background: linear-gradient(135deg, var(--brand), var(--brand-strong));
@@ -322,13 +350,13 @@ aside h2 {
 
 .nav-toggle {
   display: none;
-  min-width: 2.5rem;
-  min-height: 2.5rem;
+  min-width: 2.2rem;
+  min-height: 2.2rem;
   border: 0;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.95);
   color: var(--text-main);
-  font-size: 1.15rem;
+  font-size: 1rem;
   cursor: pointer;
   box-shadow: 0 8px 16px rgba(17, 24, 39, 0.08);
 }
@@ -339,7 +367,7 @@ aside h2 {
   padding: 0 1rem;
   min-height: 1.5rem;
   color: var(--text-soft);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
 }
 
 .search-hit {
@@ -358,8 +386,23 @@ ul {
 }
 
 li {
-
   margin-left: 20px;
+  font-size: 0.95rem;
+}
+
+p,
+dd,
+dt,
+td,
+th,
+label,
+input,
+select,
+button,
+figcaption,
+address,
+caption {
+  font-size: 0.92rem;
 }
 
 /* Responsive tables */
@@ -432,7 +475,7 @@ a:visited {
 footer {
   width: min(100%, 1440px);
   margin: 1.2rem auto 0;
-  padding: 2rem 1rem 2.4rem;
+  padding: 1.7rem 1rem 2rem;
   text-align: center;
   color: var(--text-soft);
   border-top: 1px solid var(--line-soft);
@@ -440,6 +483,7 @@ footer {
 
 footer p {
   margin: 0.35rem 0;
+  font-size: 0.85rem;
 }
 
 footer address {
@@ -449,4 +493,32 @@ footer address {
   flex-wrap: wrap;
   font-style: normal;
   margin: 0.8rem 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body header,
+  body .index,
+  body main,
+  body footer,
+  #leftside,
+  aside {
+    transition: none;
+  }
+
+  body:not(.page-ready) header,
+  body:not(.page-ready) .index,
+  body:not(.page-ready) main,
+  body:not(.page-ready) footer,
+  body.page-leaving header,
+  body.page-leaving .index,
+  body.page-leaving main,
+  body.page-leaving footer {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
 }

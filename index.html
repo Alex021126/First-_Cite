@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <link rel="shortcut icon" href="https://www.bilibili.com/favicon.ico?v=1" />
-  <title>一个网页</title>
+  <title>A Website</title>
 
   <meta name="description" content="A Website." />
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -18,20 +18,19 @@
 
 
 <body>
-  <header>一个网站</header>
-  <nav class="index"><!-- 本站统一的导航栏 -->
-    <button type="button" class="nav-toggle" aria-label="打开左侧菜单" onclick="openNavleft()">&#9776;</button>
-    <a href="index.html">主页</a><a href="personal.html">个人</a><a href="bouncing-balls-start/ball.html">弹跳小球</a>
-    <button type="button" class="nav-toggle" aria-label="打开右侧链接栏" onclick="openNavright()">&#9776;</button>
-    <form class="site-search" role="search"> <!-- 搜索栏是站点内导航的一个非线性的方式。 -->
-      <input type="search" placeholder="搜索当前页面内容" aria-label="搜索当前页面内容">
-      <input type="submit" value="搜索">
+  <header>A Website</header>
+  <nav class="index">
+    <button type="button" class="nav-toggle" aria-label="Open left menu" onclick="openNavleft()">&#9776;</button>
+    <a href="index.html">Home</a><a href="personal.html">Profile</a><a href="bouncing-balls-start/ball.html">Bouncing Balls</a>
+    <button type="button" class="nav-toggle" aria-label="Open right links panel" onclick="openNavright()">&#9776;</button>
+    <form class="site-search" role="search">
+      <input type="search" placeholder="Search this page" aria-label="Search this page">
+      <input type="submit" value="Search">
     </form>
   </nav>
   <p class="search-status" aria-live="polite"></p>
   <div id="sidebarOverlay" class="sidebar-overlay" onclick="closeAllSidebars()"></div>
-  <!-- 共 n 个导航栏项目，省略…… -->
-  <main class="has-sidebars"> <!-- 网页主体内容 -->
+  <main class="has-sidebars">
     <div id="leftside" class="leftside">
      
       <h2> Menu</h2>
@@ -43,7 +42,7 @@
         <li> <a href="#foot">Contact author</a></br></li>
       </ul>
     </div>
-    <aside id="rightside"> <!-- 侧边栏在主内容右侧 -->
+    <aside id="rightside">
     
       <h2>Relative Links</h2>
       <p>
@@ -54,11 +53,10 @@
           href="https://meeting.tencent.com/qrcode-login.html?redirect_link=https%3A%2F%2Fmeeting.tencent.com%2Fuser-center%2Fuser-meeting-list%2Fcurrent%3Freload%3D1&phone-number=">TencentMeeting</a><br>
         <a href="https://www.yuketang.cn/web/?next=/v2/web/index">RainClass</a><br>
 
-        <!-- 侧边栏有 n 个超链接，略略略…… -->
       </p>
     </aside>
    
-    <article> <!-- 此处包含一个 article（一篇文章），内容略…… -->
+    <article>
       <a name="Imagegallery"></a>
       <nav class="ImageGallery">
         <h1>Image gallery </h1>
@@ -101,26 +99,26 @@
 
       <section></section>
       <a name="Article"> </a>
-      <h1>三国演义</h1>
-      <p>罗贯中</p>
-      <h2>第一回 宴桃园豪杰三结义 斩黄巾英雄首立功</h2>
-      <p>话说天下大势，分久必合，合久必分。周末七国分争，并入于秦。及秦灭之后，楚、汉分争，又并入于汉……</p>
-      <h2>第二回 张翼德怒鞭督邮 何国舅谋诛宦竖</h2>
-      <p>且说董卓字仲颖，陇西临洮人也，官拜河东太守，自来骄傲。当日怠慢了玄德，张飞性发，便欲杀之……</p>
-      <h3>却说张飞</h3>
-      <p>却说张飞饮了数杯闷酒，乘马从馆驿前过，见五六十个老人，皆在门前痛哭。飞问其故，众老人答曰：“督邮逼勒县吏，欲害刘公；我等皆来苦告，不得放入，反遭把门人赶打！”……</p>
+      <h1>Romance of the Three Kingdoms</h1>
+      <p>Luo Guanzhong</p>
+      <h2>Chapter One: Oath in the Peach Garden</h2>
+      <p>The empire, long divided, must unite; long united, must divide. After the struggles of many states, Qin rose and fell, and Han emerged from the chaos...</p>
+      <h2>Chapter Two: Zhang Fei Whips the Inspector</h2>
+      <p>Dong Zhuo, styled Zhongying, came from Longxi and held command with arrogance. When he slighted Liu Bei, Zhang Fei's temper flared, and he nearly drew his sword...</p>
+      <h3>Zhang Fei Appears Again</h3>
+      <p>After several cups of bitter wine, Zhang Fei rode past the inn and saw a crowd of elders weeping. When he asked why, they told him the local inspector had come to harm Liu Bei and refused every plea for mercy...</p>
       <figure>
-        <img src="image/Shenhe.jpg" alt="一只恐龙头部和躯干的骨架，它有一个巨大的头，长着锋利的牙齿。" width="200" height="200">
-        <figcaption>申鹤</figcaption>
+        <img src="image/Shenhe.jpg" alt="Portrait of Shenhe from a fantasy game." width="200" height="200">
+        <figcaption>Shenhe</figcaption>
       </figure>
 
       <a name="Video"></a>
       <video controls><!-- muted -->
         <source src="video/League of Legends .mp4" type="video/mp4">
-        <track kind="subtitles" src="subtitles.vtt" srclang="zh-CN">
-        <p>你的浏览器不支持 HTML5 视频。可点击<a href="video/League of Legends .mp4">此链接</a>观看</p>
+        <track kind="subtitles" src="subtitles.vtt" srclang="en">
+        <p>Your browser does not support HTML5 video. You can <a href="video/League of Legends .mp4">watch it here</a>.</p>
       </video>
-      <p>祖安转大虫子清空全场！</p>
+      <p>A chaotic teamfight clip from League of Legends.</p>
       <br>
       <iframe src="https://space.bilibili.com/31306977?spm_id_from=333.1007.0.0" frameborder="0" allowfullscreen
         sandbox>
@@ -128,14 +126,14 @@
             Fallback link for browsers that don't support iframes
           </a> </p>
       </iframe>
-      <p>一个神奇的up主</p>
+      <p>A favorite Bilibili creator.</p>
       <br>
 
       <audio controls>
         <source src="audio/沈以诚 - 形容.mp3">
-        <p>你的浏览器不支持 HTML5 音频，可点击<a href="audio/沈以诚 - 形容.mp3">此链接</a>收听。</p>
+        <p>Your browser does not support HTML5 audio. You can <a href="audio/沈以诚 - 形容.mp3">listen here</a>.</p>
       </audio>
-      <p>一首歌</p>
+      <p>A song recommendation.</p>
 
     </article>
 
@@ -143,7 +141,7 @@
 
   </main>
 
-  <footer> <!-- 本站所有网页的统一页脚 -->
+  <footer>
     <a name="foot"></a>
     <br>
     <p>Contact the author of this page:</p>
@@ -152,7 +150,7 @@
       <a href="mailto:2385920112@qq.com">2385920112@qq.com</a><br>
       <a href="tel:+86 17602336743">17602336743</a>
     </address>
-    <p>© Alex 保留所有权利</p>
+    <p>© Alex. All rights reserved.</p>
   </footer>
 </body>
 

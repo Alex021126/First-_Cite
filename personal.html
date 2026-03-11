@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -18,44 +18,40 @@
 
 <body>
   <header> A Website</header>
-  <nav class="index"><!-- 本站统一的导航栏 -->
-    <button type="button" class="nav-toggle" aria-label="打开左侧菜单" onclick="openNavleft()">&#9776;</button>
-    <a href="index.html">主页</a><a href="personal.html">个人</a><a href="bouncing-balls-start/ball.html">弹跳小球</a>
-    <button type="button" class="nav-toggle" aria-label="打开右侧链接栏" onclick="openNavright()">&#9776;</button>
-    <form class="site-search" role="search"> <!-- 搜索栏是站点内导航的一个非线性的方式。 -->
-      <input type="search" placeholder="搜索当前页面内容" aria-label="搜索当前页面内容">
-      <input type="submit" value="搜索">
+  <nav class="index">
+    <button type="button" class="nav-toggle" aria-label="Open left menu" onclick="openNavleft()">&#9776;</button>
+    <a href="index.html">Home</a><a href="personal.html">Profile</a><a href="bouncing-balls-start/ball.html">Bouncing Balls</a>
+    <button type="button" class="nav-toggle" aria-label="Open right links panel" onclick="openNavright()">&#9776;</button>
+    <form class="site-search" role="search">
+      <input type="search" placeholder="Search this page" aria-label="Search this page">
+      <input type="submit" value="Search">
     </form>
   </nav>
   <p class="search-status" aria-live="polite"></p>
   <div id="sidebarOverlay" class="sidebar-overlay" onclick="closeAllSidebars()"></div>
-  <!-- 共 n 个导航栏项目，省略…… -->
-
-  <main class="personal-layout"> <!-- 网页主体内容 -->
+  <main class="personal-layout">
     <div id="leftside">
-      <h2>页面目录</h2>
+      <h2>Contents</h2>
       <ul>
-        <li><a href="#profile">个人介绍</a></li>
-        <li><a href="#poem">诗歌阅读</a></li>
-        <li><a href="#bands">乐队表格</a></li>
-        <li><a href="#cards">卡片区域</a></li>
+        <li><a href="#profile">About</a></li>
+        <li><a href="#poem">Poem</a></li>
+        <li><a href="#bands">Bands Table</a></li>
+        <li><a href="#cards">Cards</a></li>
       </ul>
     </div>
-    <aside id="rightside"> <!-- 侧边栏在主内容右侧 -->
-      <h2>相关链接</h2>
+    <aside id="rightside">
+      <h2>Links</h2>
       <p>
         <a href="https://www.bilibili.com/">BiliBili</a><br>
-        <a href="https://www.github.com">GitHUb</a><br>
-        <a href="https://www.icourse163.org/">Mooc</a><br>
+        <a href="https://www.github.com">GitHub</a><br>
+        <a href="https://www.icourse163.org/">MOOC</a><br>
         <a
           href="https://meeting.tencent.com/qrcode-login.html?redirect_link=https%3A%2F%2Fmeeting.tencent.com%2Fuser-center%2Fuser-meeting-list%2Fcurrent%3Freload%3D1&phone-number=">TencentMeeting</a><br>
-        <a href="https://www.yuketang.cn/web/?next=/v2/web/index">RainClass</a><br>
-
-        <!-- 侧边栏有 n 个超链接，略略略…… -->
+        <a href="https://www.yuketang.cn/web/?next=/v2/web/index">Yuketang</a><br>
       </p>
     </aside>
 
-    <article> <!-- 此处包含一个 article（一篇文章），内容略…… -->
+    <article>
       <a id="profile"></a>
       <h1>ALex Amria</h1>
       <div class="job-title">Web Developer</div>
@@ -149,13 +145,13 @@
   <footer> <!-- 本站所有网页的统一页脚 -->
 
     <br>
-    <p>Contact the author of this page:</p>
+      <p>Contact the author of this page:</p>
 
     <address>
       <a href="mailto:2385920112@qq.com">2385920112@qq.com</a><br>
       <a href="tel:+86 17602336743">17602336743</a>
     </address>
-    <p>© Alex 保留所有权利</p>
+    <p>© Alex. All rights reserved.</p>
   </footer>
 </body>
 

@@ -1,12 +1,12 @@
 h1 {
   color: #1d1d1f;
-  font-size: clamp(1.8rem, 1.3rem + 1.5vw, 2.6rem);
+  font-size: clamp(1.45rem, 1rem + 1vw, 2rem);
   font-family: "SF Pro Display", "PingFang SC", "Hiragino Sans GB", sans-serif;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
 }
 
 h2 {
-  font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.7rem);
+  font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.25rem);
 }
 
 .personal-layout {
@@ -23,7 +23,7 @@ h2 {
 .personal-layout article {
   grid-column: 2;
   min-width: 0;
-  padding: 1.75rem;
+  padding: 1.35rem;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(247, 247, 249, 0.92));
   border-radius: 1.3rem;
   box-shadow: 0 16px 30px rgba(17, 24, 39, 0.06);
@@ -57,8 +57,8 @@ aside {
 .job-title {
   color: #6e6e73;
   font-weight: 600;
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
 }
 
 /*tables*/
@@ -90,7 +90,7 @@ thead th:nth-child(4) {
 
 th,
 td {
-  padding: 1rem;
+  padding: 0.85rem;
 }
 
 /* typography */
@@ -117,7 +117,7 @@ tfoot th {
 
 caption {
   font-family: 'Rock Salt', cursive;
-  padding: 20px;
+  padding: 14px;
   font-style: italic;
   caption-side: bottom;
   color: #666;
@@ -152,7 +152,7 @@ pre {
 pre {
   line-height: 1.5;
   letter-spacing: 0.05rem;
-  padding: 1.2rem;
+  padding: 1rem;
   background-color: white;
   border-radius: 1rem;
   overflow-x: auto;
@@ -163,6 +163,7 @@ label {
   display: inline-block;
   width: auto;
   margin-right: 1rem;
+  font-size: 0.9rem;
 }
 
 select {

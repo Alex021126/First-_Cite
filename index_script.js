@@ -12,6 +12,36 @@ function closeAllSidebars() {
   document.body.classList.remove('sidebar-open', 'left-open', 'right-open');
 }
 
+function setupPageTransitions() {
+  requestAnimationFrame(() => {
+    document.body.classList.add('page-ready');
+  });
+
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href]');
+    if (!link) {
+      return;
+    }
+
+    const href = link.getAttribute('href');
+    const target = link.getAttribute('target');
+    const isModifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
+    const isInternalPage = href && /^(index|personal)\.html$/.test(href);
+
+    if (!isInternalPage || target === '_blank' || isModifiedClick) {
+      return;
+    }
+
+    event.preventDefault();
+    document.body.classList.add('page-leaving');
+    setTimeout(() => {
+      window.location.href = href;
+    }, 220);
+  });
+}
+
+setupPageTransitions();
+
 document.addEventListener('click', (event) => {
   const isNavLink = event.target.closest('#leftside a, #rightside a');
   if (isNavLink) {
@@ -37,19 +67,19 @@ function setupPageSearch() {
 
     const query = input.value.trim().toLowerCase();
     if (!query) {
-      status.textContent = '请输入关键词后再搜索。';
+      status.textContent = 'Enter a keyword to search this page.';
       return;
     }
 
     const match = searchable.find((node) => node.textContent.toLowerCase().includes(query));
     if (!match) {
-      status.textContent = `没有找到“${input.value.trim()}”。`;
+      status.textContent = `No results found for "${input.value.trim()}".`;
       return;
     }
 
     match.classList.add('search-hit');
     match.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    status.textContent = `已定位到“${input.value.trim()}”。`;
+    status.textContent = `Jumped to "${input.value.trim()}".`;
   });
 }
 
@@ -69,7 +99,7 @@ let resetButton;
 function checkGuess() {
   const userGuess = Number(guessField.value);
   if (!Number.isInteger(userGuess) || userGuess < 1 || userGuess > 100) {
-    lastResult.textContent = '请输入 1 到 100 之间的整数。';
+    lastResult.textContent = 'Please enter an integer between 1 and 100.';
     lastResult.style.display = 'block';
     lastResult.style.backgroundColor = '#b54708';
     lowOrHi.textContent = '';
@@ -237,7 +267,7 @@ fetch('https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json
     showHeroes(superHeroes);
   })
   .catch(() => {
-    header.innerHTML = '<h1>Superhero Squad</h1><p>网络数据暂时不可用，已跳过远程内容加载。</p>';
+    header.innerHTML = '<h1>Superhero Squad</h1><p>Remote data is unavailable right now, so this section was skipped.</p>';
   });
 
 function populateHeader(jsonObj) {

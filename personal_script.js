@@ -12,6 +12,36 @@ function closeAllSidebars() {
   document.body.classList.remove('sidebar-open', 'left-open', 'right-open');
 }
 
+function setupPageTransitions() {
+  requestAnimationFrame(() => {
+    document.body.classList.add('page-ready');
+  });
+
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href]');
+    if (!link) {
+      return;
+    }
+
+    const href = link.getAttribute('href');
+    const target = link.getAttribute('target');
+    const isModifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
+    const isInternalPage = href && /^(index|personal)\.html$/.test(href);
+
+    if (!isInternalPage || target === '_blank' || isModifiedClick) {
+      return;
+    }
+
+    event.preventDefault();
+    document.body.classList.add('page-leaving');
+    setTimeout(() => {
+      window.location.href = href;
+    }, 220);
+  });
+}
+
+setupPageTransitions();
+
 document.addEventListener('click', (event) => {
   const isNavLink = event.target.closest('#leftside a, #rightside a');
   if (isNavLink) {
@@ -37,19 +67,19 @@ function setupPageSearch() {
 
     const query = input.value.trim().toLowerCase();
     if (!query) {
-      status.textContent = '请输入关键词后再搜索。';
+      status.textContent = 'Enter a keyword to search this page.';
       return;
     }
 
     const match = searchable.find((node) => node.textContent.toLowerCase().includes(query));
     if (!match) {
-      status.textContent = `没有找到“${input.value.trim()}”。`;
+      status.textContent = `No results found for "${input.value.trim()}".`;
       return;
     }
 
     match.classList.add('search-hit');
     match.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    status.textContent = `已定位到“${input.value.trim()}”。`;
+    status.textContent = `Jumped to "${input.value.trim()}".`;
   });
 }
 
@@ -111,7 +141,7 @@ function updateDisplay(verse) {
   fetch(url)
     .then((response) => {
       if (!response.ok) {
-        throw new Error(`HTTP 错误：${response.status}`);
+        throw new Error(`HTTP error: ${response.status}`);
       }
       return response.text();
     })
@@ -119,7 +149,7 @@ function updateDisplay(verse) {
       poemDisplay.textContent = text;
     })
     .catch((error) => {
-      poemDisplay.textContent = verseFallbacks[normalized] || `获取诗歌失败：${error.message}`;
+      poemDisplay.textContent = verseFallbacks[normalized] || `Failed to load the poem: ${error.message}`;
     });
 }
 
