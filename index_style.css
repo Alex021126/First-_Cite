@@ -41,6 +41,10 @@ dt {
 .ImageGallery {
     width: 98%;
     margin: 0 auto;
+    padding: 1.2rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(239, 246, 255, 0.66));
+    border: 1px solid rgba(91, 125, 155, 0.14);
+    border-radius: 1.2rem;
 }
 
 .full-img {
@@ -207,6 +211,12 @@ article {
     padding: 1em;
 }
 
+article > h1,
+article > h2,
+article > h3 {
+    color: #102a43;
+}
+
 img {
     max-width: 100%;
     border-radius: 0.5em;
@@ -277,6 +287,10 @@ figure {
     margin: 1.5rem auto;
     width: min(100%, 18rem);
     text-align: center;
+    padding: 1rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(224, 242, 254, 0.65));
+    border-radius: 1rem;
+    box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
 }
 
 audio {
@@ -292,6 +306,7 @@ audio {
 @media (max-width: 640px) {
     .ImageGallery {
         width: 100%;
+        padding: 0.85rem;
     }
 
     .thumb-bar {
