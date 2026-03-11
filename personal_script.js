@@ -24,7 +24,7 @@ function setupPageSearch() {
   const input = form?.querySelector('input[type="search"]');
   const status = document.querySelector('.search-status');
   const searchable = Array.from(
-    document.querySelectorAll('main h1, main h2, main p, main li, main caption, main th, main td, main label')
+    document.querySelectorAll('main h1, main h2, main p, main li, main caption, main th, main td, main label, main .job-title')
   );
 
   function clearHighlights() {
@@ -57,6 +57,48 @@ setupPageSearch();
 
 const verseChoose = document.querySelector('#verse-choose');
 const poemDisplay = document.querySelector('pre');
+const verseFallbacks = {
+  verse1: `Lo! 'tis a gala night
+   Within the lonesome latter years!
+An angel throng, bewinged, bedight
+   In veils, and drowned in tears,
+Sit in a theatre, to see
+   A play of hopes and fears,
+While the orchestra breathes fitfully
+   The music of the spheres.
+Mimes, in the form of God on high,
+   Mutter and mumble low,
+And hither and thither fly-
+   Mere puppets they, who come and go
+At bidding of vast formless things
+   That shift the scenery to and fro,
+Flapping from out their Condor wings
+   Invisible Woe!`,
+  verse2: `That motley drama- oh, be sure
+   It shall not be forgot!
+With its Phantom chased for evermore,
+   By a crowd that seize it not,
+Through a circle that ever returneth in
+   To the self-same spot,
+And much of Madness, and more of Sin,
+   And Horror the soul of the plot.`,
+  verse3: `But see, amid the mimic rout
+   A crawling shape intrude!
+A blood-red thing that writhes from out
+   The scenic solitude!
+It writhes!- it writhes!- with mortal pangs
+   The mimes become its food,
+And seraphs sob at vermin fangs
+   In human gore imbued.`,
+  verse4: `But see, amid the mimic rout
+   A crawling shape intrude!
+A blood-red thing that writhes from out
+   The scenic solitude!
+It writhes!- it writhes!- with mortal pangs
+   The mimes become its food,
+And seraphs sob at vermin fangs
+   In human gore imbued.`
+};
 
 verseChoose?.addEventListener('change', () => {
   updateDisplay(verseChoose.value);
@@ -77,7 +119,7 @@ function updateDisplay(verse) {
       poemDisplay.textContent = text;
     })
     .catch((error) => {
-      poemDisplay.textContent = `获取诗歌失败：${error.message}`;
+      poemDisplay.textContent = verseFallbacks[normalized] || `获取诗歌失败：${error.message}`;
     });
 }
 

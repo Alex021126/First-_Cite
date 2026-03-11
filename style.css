@@ -162,6 +162,12 @@ aside {
     justify-content: center;
   }
 
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .index a {
     flex: 1 1 30%;
     text-align: center;
@@ -246,6 +252,7 @@ aside {
 }
 
 .nav-toggle {
+  display: none;
   min-width: 2.5rem;
   min-height: 2.5rem;
   border: 0;
@@ -304,6 +311,10 @@ th {
   font-size: 1.6rem;
   line-height: 1;
   cursor: pointer;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: inherit;
 }
 
 /*https*/
