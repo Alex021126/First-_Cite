@@ -1,34 +1,77 @@
 html,
 body {
   margin: 0;
-}
-
-html {
-  font-family: sans-serif;
-
+  min-height: 100%;
 }
 
 body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  height: inherit;
+  font-family: "Trebuchet MS", "Verdana", sans-serif;
+  background:
+    radial-gradient(circle at top, #21476b 0%, #122235 42%, #08111b 100%);
+  color: #f5f0e6;
 }
 
-h1 {
-  font-size: 2rem;
-  letter-spacing: -1px;
-  position: absolute;
-  margin: 0;
-  top: -4px;
-  right: 5px;
-
-  color: transparent;
-  text-shadow: 0 0 4px white;
+.game-shell {
+  position: relative;
+  width: min(100vw, 1000px);
+  height: min(100vh, 720px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
-p {
+.back-link {
   position: absolute;
-  margin: 0;
-  top: 35px;
-  right: 5px;
-  color: #aaa;
+  top: max(16px, env(safe-area-inset-top));
+  left: max(16px, env(safe-area-inset-left));
+  z-index: 2;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(9, 17, 27, 0.58);
+  color: #f6f0dd;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  border: 1px solid rgba(244, 231, 196, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+canvas {
+  display: block;
+  width: min(100%, 960px);
+  height: auto;
+  max-height: calc(100vh - 32px);
+  border-radius: 26px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  touch-action: none;
+  background: linear-gradient(180deg, #17304d 0%, #0d1826 100%);
+}
+
+@media (max-width: 720px) {
+  .game-shell {
+    width: 100vw;
+    height: 100vh;
+    padding: 8px;
+  }
+
+  .back-link {
+    top: max(10px, env(safe-area-inset-top));
+    left: max(10px, env(safe-area-inset-left));
+    padding: 7px 12px;
+  }
+
+  canvas {
+    width: 100%;
+    max-height: calc(100vh - 16px);
+    border-radius: 22px;
+  }
 }
