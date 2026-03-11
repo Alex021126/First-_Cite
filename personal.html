@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="shortcut icon" href="https://www.bilibili.com/favicon.ico?v=1" />
+  <link rel="icon" href="icons/favicon.svg" type="image/svg+xml" />
   <title>A Website</title>
 
   <meta name="description" content="A Website." />
@@ -17,10 +17,10 @@
 </head>
 
 <body>
-  <header> A Website</header>
+  <header>A Website</header>
   <nav class="index">
     <button type="button" class="nav-toggle" aria-label="Open left menu" onclick="openNavleft()">&#9776;</button>
-    <a href="index.html">Home</a><a href="personal.html">Profile</a><a href="bouncing-balls-start/ball.html">Bouncing Balls</a>
+    <a href="index.html">Home</a><a href="personal.html">Profile</a><a href="bouncing-balls-start/ball.html">Pulse Runner</a>
     <button type="button" class="nav-toggle" aria-label="Open right links panel" onclick="openNavright()">&#9776;</button>
     <form class="site-search" role="search">
       <input type="search" placeholder="Search this page" aria-label="Search this page">
@@ -29,7 +29,7 @@
   </nav>
   <p class="search-status" aria-live="polite"></p>
   <div id="sidebarOverlay" class="sidebar-overlay" onclick="closeAllSidebars()"></div>
-  <main class="personal-layout">
+  <main class="has-sidebars personal-layout">
     <div id="leftside">
       <h2>Contents</h2>
       <ul>
@@ -53,28 +53,32 @@
 
     <article>
       <a id="profile"></a>
-      <h1>ALex Amria</h1>
-      <div class="job-title">Web Developer</div>
-      <p>A beginner who just start to learn about Website development</p>
-      <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. </p>
-      
+      <p class="eyebrow">Profile</p>
+      <h1>Alex Amria</h1>
+      <div class="job-title">Frontend learner and interface builder</div>
+      <p>A beginner who just started learning website development and is building small interactive projects step by step.</p>
+      <p>This page keeps the same visual tone as the homepage, but focuses on personal notes, reading snippets, and small structured exercises.</p>
     </article>
-    <h1 id="poem">Fetch starting point</h1>
+    <section class="content-panel">
+      <h1 id="poem">Fetch starting point</h1>
 
-  <form>
-    <label for="verse-choose">Choose a verse</label>
-    <select id="verse-choose" name="verse-choose">
-      <option>Verse 1</option>
-      <option>Verse 2</option>
-      <option>Verse 3</option>
-      <option>Verse 4</option>
-    </select>
-  </form>
+      <form>
+        <label for="verse-choose">Choose a verse</label>
+        <select id="verse-choose" name="verse-choose">
+          <option>Verse 1</option>
+          <option>Verse 2</option>
+          <option>Verse 3</option>
+          <option>Verse 4</option>
+        </select>
+      </form>
 
-  <h2>The Conqueror Worm, <em>Edgar Allen Poe, 1843</em></h2>
+      <h2>The Conqueror Worm, <em>Edgar Allen Poe, 1843</em></h2>
 
-  <pre></pre>
-    <table id="bands">
+      <pre></pre>
+    </section>
+
+    <section class="content-panel">
+      <table id="bands">
       <caption>A summary of the UK's most famous punk bands</caption>
       <thead>
         <tr>
@@ -113,32 +117,33 @@
           <td colspan="2">77</td>
         </tr>
       </tfoot>
-    </table>
-    
-    <ul id="cards" class="grid">
-      <li>
+      </table>
+    </section>
+
+    <section class="content-panel">
+      <ul id="cards" class="grid">
+        <li>
           <h2>Card 1</h2>
           <p>...</p>
-      </li>
-      <li>
+        </li>
+        <li>
           <h2>Card 2</h2>
           <p>...</p>
-      </li>
-      <li>
+        </li>
+        <li>
           <h2>Card 3</h2>
           <p>...</p>
-      </li>
-      <li>
+        </li>
+        <li>
           <h2>Card 4</h2>
           <p>...</p>
-      </li>
-      <li>
+        </li>
+        <li>
           <h2>Card 5</h2>
           <p>...</p>
-      </li>
-  </ul>
-  
-    
+        </li>
+      </ul>
+    </section>
 
   </main>
 
