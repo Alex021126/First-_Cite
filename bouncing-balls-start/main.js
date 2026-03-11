@@ -72,11 +72,52 @@ const state = {
 function resizeCanvas() {
   const maxWidth = window.innerWidth - (window.innerWidth < 720 ? 16 : 32);
   const maxHeight = window.innerHeight - (window.innerWidth < 720 ? 16 : 32);
-  const scale = Math.min(maxWidth / WORLD.width, maxHeight / WORLD.height, 1);
+  const upscaleCap = window.innerWidth < 720 ? 1 : 1.28;
+  const scale = Math.min(maxWidth / WORLD.width, maxHeight / WORLD.height, upscaleCap);
   canvas.width = WORLD.width;
   canvas.height = WORLD.height;
   canvas.style.width = `${WORLD.width * scale}px`;
   canvas.style.height = `${WORLD.height * scale}px`;
+}
+
+function roundedRect(x, y, width, height, radius) {
+  const safeRadius = Math.min(radius, width / 2, height / 2);
+  ctx.beginPath();
+  ctx.moveTo(x + safeRadius, y);
+  ctx.lineTo(x + width - safeRadius, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + safeRadius);
+  ctx.lineTo(x + width, y + height - safeRadius);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - safeRadius, y + height);
+  ctx.lineTo(x + safeRadius, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - safeRadius);
+  ctx.lineTo(x, y + safeRadius);
+  ctx.quadraticCurveTo(x, y, x + safeRadius, y);
+  ctx.closePath();
+}
+
+function overlayMetrics() {
+  const compact = window.innerWidth < 720;
+  return compact
+    ? {
+        x: 150,
+        y: 118,
+        width: 660,
+        height: 312,
+        buttonX: 330,
+        buttonY: 352,
+        buttonWidth: 280,
+        buttonHeight: 54
+      }
+    : {
+        x: 210,
+        y: 126,
+        width: 540,
+        height: 286,
+        buttonX: 360,
+        buttonY: 340,
+        buttonWidth: 240,
+        buttonHeight: 52
+      };
 }
 
 function resetGame() {
@@ -210,7 +251,13 @@ function beginPointerControl(event) {
   POINTER.active = true;
 
   if (state.mode === "start" || state.mode === "gameover" || state.mode === "win") {
-    if (point.y > 360 && point.y < 430 && point.x > 315 && point.x < 645) {
+    const overlay = overlayMetrics();
+    if (
+      point.x >= overlay.x &&
+      point.x <= overlay.x + overlay.width &&
+      point.y >= overlay.y &&
+      point.y <= overlay.y + overlay.height
+    ) {
       resetGame();
     }
     return;
@@ -474,27 +521,30 @@ function drawBackground() {
 }
 
 function drawHud() {
-  ctx.fillStyle = "rgba(7, 16, 25, 0.68)";
-  ctx.fillRect(20, 18, 250, 92);
-  ctx.fillRect(WORLD.width - 235, 18, 215, 92);
+  roundedRect(20, 18, 214, 88, 20);
+  ctx.fillStyle = "rgba(7, 16, 25, 0.62)";
+  ctx.fill();
+  roundedRect(WORLD.width - 244, 18, 224, 88, 20);
+  ctx.fill();
 
   ctx.fillStyle = "#f6f0dd";
-  ctx.font = "bold 20px Trebuchet MS";
-  ctx.fillText(`Shards ${state.score}/${state.targetScore}`, 34, 48);
-  ctx.fillText(`Time ${Math.ceil(state.timeLeft)}`, 34, 76);
-  ctx.fillText(`HP ${state.player.hp}`, 34, 104);
+  ctx.font = "bold 18px Trebuchet MS";
+  ctx.fillText(`Shards ${state.score}/${state.targetScore}`, 36, 46);
+  ctx.fillText(`Time ${Math.ceil(state.timeLeft)}`, 36, 72);
+  ctx.fillText(`HP ${state.player.hp}`, 36, 98);
 
   ctx.textAlign = "right";
-  ctx.fillText(`Pulse ${state.player.pulseCooldown > 0 ? state.player.pulseCooldown.toFixed(1) + "s" : "READY"}`, WORLD.width - 34, 48);
-  ctx.fillText(`Combo ${state.combo > 1 ? "x" + state.combo : "-"}`, WORLD.width - 34, 76);
-  ctx.fillText(state.slowTime > 0 ? "Slow field live" : "Pulse pushes nearby drones", WORLD.width - 34, 104);
+  ctx.fillText(`Pulse ${state.player.pulseCooldown > 0 ? state.player.pulseCooldown.toFixed(1) + "s" : "READY"}`, WORLD.width - 34, 46);
+  ctx.fillText(`Combo ${state.combo > 1 ? "x" + state.combo : "-"}`, WORLD.width - 34, 72);
+  ctx.fillText(state.slowTime > 0 ? "Slow field live" : "Pulse clears space", WORLD.width - 34, 98);
   ctx.textAlign = "left";
 
   if (state.message) {
-    ctx.fillStyle = "rgba(7, 16, 25, 0.64)";
-    ctx.fillRect(244, WORLD.height - 54, 472, 34);
+    roundedRect(276, WORLD.height - 54, 408, 34, 16);
+    ctx.fillStyle = "rgba(7, 16, 25, 0.58)";
+    ctx.fill();
     ctx.fillStyle = "#d9f8ff";
-    ctx.font = "16px Trebuchet MS";
+    ctx.font = "15px Trebuchet MS";
     ctx.textAlign = "center";
     ctx.fillText(state.message, WORLD.width / 2, WORLD.height - 31);
     ctx.textAlign = "left";
@@ -585,7 +635,7 @@ function drawParticles() {
 }
 
 function drawTouchControls() {
-  ctx.globalAlpha = 0.8;
+  ctx.globalAlpha = 0.72;
   ctx.strokeStyle = "rgba(255,255,255,0.22)";
   ctx.lineWidth = 3;
   ctx.beginPath();
@@ -620,31 +670,55 @@ function drawTouchControls() {
 }
 
 function drawOverlay(title, subtitle, buttonLabel) {
-  ctx.fillStyle = "rgba(5, 10, 16, 0.72)";
-  ctx.fillRect(180, 116, 600, 360);
-  ctx.strokeStyle = "rgba(255,255,255,0.12)";
+  const overlay = overlayMetrics();
+
+  roundedRect(overlay.x, overlay.y, overlay.width, overlay.height, 24);
+  ctx.fillStyle = "rgba(4, 10, 18, 0.74)";
+  ctx.fill();
+  ctx.strokeStyle = "rgba(155, 224, 255, 0.12)";
   ctx.lineWidth = 2;
-  ctx.strokeRect(180, 116, 600, 360);
+  ctx.stroke();
+
+  ctx.fillStyle = "#7be9fb";
+  ctx.textAlign = "center";
+  ctx.font = "bold 14px Trebuchet MS";
+  ctx.fillText("SURVIVAL RUN", WORLD.width / 2, overlay.y + 38);
 
   ctx.fillStyle = "#f6f0dd";
-  ctx.textAlign = "center";
-  ctx.font = "bold 48px Trebuchet MS";
-  ctx.fillText(title, WORLD.width / 2, 194);
+  ctx.font = "bold 44px Trebuchet MS";
+  ctx.fillText(title, WORLD.width / 2, overlay.y + 96);
   ctx.font = "20px Trebuchet MS";
-  ctx.fillStyle = "#cfe6ff";
-  ctx.fillText(subtitle, WORLD.width / 2, 234);
+  ctx.fillStyle = "#d1e8ff";
+  ctx.fillText(subtitle, WORLD.width / 2, overlay.y + 132);
 
-  ctx.font = "18px Trebuchet MS";
-  ctx.fillStyle = "#e6f4ff";
-  ctx.fillText("Desktop: WASD / Arrows move, Space pulse, P pause, F fullscreen", WORLD.width / 2, 292);
-  ctx.fillText("Mobile: drag the left pad, tap PULSE, press the panel to start", WORLD.width / 2, 328);
-  ctx.fillText("Pulse shoves nearby drones away and briefly slows the field.", WORLD.width / 2, 364);
+  const badges = [
+    { label: "MOVE", text: "WASD / drag pad" },
+    { label: "PULSE", text: "Space / right button" },
+    { label: "GOAL", text: "Collect 12 shards" }
+  ];
+  const badgeY = overlay.y + 168;
+  badges.forEach((badge, index) => {
+    const badgeWidth = 148;
+    const gap = 14;
+    const totalWidth = badgeWidth * badges.length + gap * (badges.length - 1);
+    const x = WORLD.width / 2 - totalWidth / 2 + index * (badgeWidth + gap);
+    roundedRect(x, badgeY, badgeWidth, 58, 16);
+    ctx.fillStyle = "rgba(19, 41, 67, 0.76)";
+    ctx.fill();
+    ctx.fillStyle = "#8ef3df";
+    ctx.font = "bold 13px Trebuchet MS";
+    ctx.fillText(badge.label, x + badgeWidth / 2, badgeY + 21);
+    ctx.fillStyle = "#f0f5ff";
+    ctx.font = "15px Trebuchet MS";
+    ctx.fillText(badge.text, x + badgeWidth / 2, badgeY + 42);
+  });
 
+  roundedRect(overlay.buttonX, overlay.buttonY, overlay.buttonWidth, overlay.buttonHeight, 18);
   ctx.fillStyle = "#8ef3df";
-  ctx.fillRect(315, 360, 330, 70);
+  ctx.fill();
   ctx.fillStyle = "#0c1a28";
-  ctx.font = "bold 28px Trebuchet MS";
-  ctx.fillText(buttonLabel, WORLD.width / 2, 404);
+  ctx.font = "bold 24px Trebuchet MS";
+  ctx.fillText(buttonLabel, overlay.buttonX + overlay.buttonWidth / 2, overlay.buttonY + 35);
   ctx.textAlign = "left";
 }
 
@@ -654,7 +728,10 @@ function render() {
   drawHazards();
   drawParticles();
   drawPlayer();
-  drawHud();
+
+  if (state.mode !== "start") {
+    drawHud();
+  }
 
   if (state.mode === "playing" || state.mode === "paused") {
     drawTouchControls();

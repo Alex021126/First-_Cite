@@ -17,21 +17,21 @@ body {
 
 .game-shell {
   position: relative;
-  width: min(100vw, 1000px);
-  height: min(100vh, 720px);
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px;
+  padding: 12px;
   box-sizing: border-box;
 }
 
 .back-link {
   position: absolute;
-  top: max(16px, env(safe-area-inset-top));
-  left: max(16px, env(safe-area-inset-left));
+  top: max(14px, env(safe-area-inset-top));
+  left: max(14px, env(safe-area-inset-left));
   z-index: 2;
-  padding: 8px 14px;
+  padding: 9px 15px;
   border-radius: 999px;
   background: rgba(9, 17, 27, 0.58);
   color: #f6f0dd;
@@ -45,10 +45,10 @@ body {
 
 canvas {
   display: block;
-  width: min(100%, 960px);
+  width: min(100%, 1220px);
   height: auto;
-  max-height: calc(100vh - 32px);
-  border-radius: 26px;
+  max-height: calc(100vh - 24px);
+  border-radius: 30px;
   box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.45),
     inset 0 0 0 1px rgba(255, 255, 255, 0.08);
