@@ -3,15 +3,15 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" href="icons/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
   <title>A Website</title>
 
-  <meta name="description" content="A Website." />
+  <meta name="description" content="A personal homepage." />
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="personal_style.css" />
-  <script src="personal_script.js" defer></script>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/personal.css" />
+  <script src="assets/js/personal.js" defer></script>
 
   <meta name="author" content="Alex">
 </head>
@@ -19,9 +19,9 @@
 <body>
   <header>A Website</header>
   <nav class="index">
-    <button type="button" class="nav-toggle" aria-label="Open left menu" onclick="openNavleft()">&#9776;</button>
-    <a href="index.html">Home</a><a href="personal.html">Profile</a><a href="bouncing-balls-start/ball.html">Pulse Runner</a>
-    <button type="button" class="nav-toggle" aria-label="Open right links panel" onclick="openNavright()">&#9776;</button>
+    <button type="button" class="nav-toggle" aria-label="Open left menu" onclick="openNavleft()">☰ Menu</button>
+    <a href="index.html">Home</a><a href="personal.html">Profile</a><a href="pages/games/pulse-runner/ball.html">Pulse Runner</a>
+    <button type="button" class="nav-toggle" aria-label="Open right links panel" onclick="openNavright()">☰ Links</button>
     <form class="site-search" role="search">
       <input type="search" placeholder="Search this page" aria-label="Search this page">
       <input type="submit" value="Search">
@@ -29,132 +29,137 @@
   </nav>
   <p class="search-status" aria-live="polite"></p>
   <div id="sidebarOverlay" class="sidebar-overlay" onclick="closeAllSidebars()"></div>
-  <main class="has-sidebars personal-layout">
+
+  <main class="personal-layout">
     <div id="leftside">
       <h2>Contents</h2>
       <ul>
-        <li><a href="#profile">About</a></li>
-        <li><a href="#poem">Poem</a></li>
-        <li><a href="#bands">Bands Table</a></li>
-        <li><a href="#cards">Cards</a></li>
+        <li><a href="#intro">Intro</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
+
     <aside id="rightside">
-      <h2>Links</h2>
+      <h2>Quick Links</h2>
       <p>
+        <strong>Video</strong><br>
+        <a href="https://www.youtube.com/">YouTube</a><br>
         <a href="https://www.bilibili.com/">BiliBili</a><br>
+        <br>
+        <strong>Development</strong><br>
         <a href="https://www.github.com">GitHub</a><br>
-        <a href="https://www.icourse163.org/">MOOC</a><br>
+        <br>
+        <strong>AI Tools</strong><br>
+        <a href="https://chat.openai.com/">ChatGPT</a><br>
+        <a href="https://claude.ai/">Claude</a><br>
+        <a href="https://gemini.google.com/">Gemini</a><br>
+        <a href="https://www.perplexity.ai/">Perplexity</a><br>
+        <br>
+        <strong>Communication</strong><br>
         <a
           href="https://meeting.tencent.com/qrcode-login.html?redirect_link=https%3A%2F%2Fmeeting.tencent.com%2Fuser-center%2Fuser-meeting-list%2Fcurrent%3Freload%3D1&phone-number=">TencentMeeting</a><br>
-        <a href="https://www.yuketang.cn/web/?next=/v2/web/index">Yuketang</a><br>
       </p>
     </aside>
 
-    <article>
-      <a id="profile"></a>
+    <article id="intro" class="hero-panel">
       <p class="eyebrow">Profile</p>
       <h1>Alex Amria</h1>
-      <div class="job-title">Frontend learner and interface builder</div>
-      <p>A beginner who just started learning website development and is building small interactive projects step by step.</p>
-      <p>This page keeps the same visual tone as the homepage, but focuses on personal notes, reading snippets, and small structured exercises.</p>
+      <div class="job-title">Frontend Learner and Web Interface Builder</div>
+      <p class="lead">
+        I am building a clean, responsive personal site while learning how layout, interaction, and visual structure
+        work together on the web.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="hero-link">View Projects</a>
+        <a href="#contact" class="hero-link secondary">Contact Me</a>
+      </div>
     </article>
-    <section class="content-panel">
-      <h1 id="poem">Fetch starting point</h1>
 
-      <form>
-        <label for="verse-choose">Choose a verse</label>
-        <select id="verse-choose" name="verse-choose">
-          <option>Verse 1</option>
-          <option>Verse 2</option>
-          <option>Verse 3</option>
-          <option>Verse 4</option>
-        </select>
-      </form>
-
-      <h2>The Conqueror Worm, <em>Edgar Allen Poe, 1843</em></h2>
-
-      <pre></pre>
+    <section id="about" class="content-panel">
+      <p class="eyebrow">About</p>
+      <h2>Focused on practical frontend work</h2>
+      <p>
+        I am currently learning HTML, CSS, and JavaScript through small projects that improve layout control,
+        responsive design, and interactive behavior.
+      </p>
+      <p>
+        My current goal is to build pages that feel structured, readable, and usable on both desktop and mobile
+        screens without relying on heavy frameworks.
+      </p>
     </section>
 
-    <section class="content-panel">
-      <table id="bands">
-      <caption>A summary of the UK's most famous punk bands</caption>
-      <thead>
-        <tr>
-          <th scope="col">Band</th>
-          <th scope="col">Year formed</th>
-          <th scope="col">No. of Albums</th>
-          <th scope="col">Most famous song</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">Buzzcocks</th>
-          <td>1976</td>
-          <td>9</td>
-          <td>Ever fallen in love (with someone you shouldn't've)</td>
-        </tr>
-        <tr>
-          <th scope="row">The Clash</th>
-          <td>1976</td>
-          <td>6</td>
-          <td>London Calling</td>
-        </tr>
-    
-          ... some rows removed for brevity
-    
-        <tr>
-          <th scope="row">The Stranglers</th>
-          <td>1974</td>
-          <td>17</td>
-          <td>No More Heroes</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <th scope="row" colspan="2">Total albums</th>
-          <td colspan="2">77</td>
-        </tr>
-      </tfoot>
-      </table>
+    <section id="skills" class="content-panel">
+      <p class="eyebrow">Skills</p>
+      <h2>What I am working on</h2>
+      <div class="skill-grid">
+        <div class="skill-card">
+          <h3>HTML Structure</h3>
+          <p>Writing semantic page structure for articles, navigation, media, and content sections.</p>
+        </div>
+        <div class="skill-card">
+          <h3>Responsive CSS</h3>
+          <p>Building layouts that adapt cleanly across desktop, tablet, and mobile breakpoints.</p>
+        </div>
+        <div class="skill-card">
+          <h3>JavaScript Basics</h3>
+          <p>Adding lightweight interactions such as sidebars, search, games, and dynamic content blocks.</p>
+        </div>
+        <div class="skill-card">
+          <h3>UI Refinement</h3>
+          <p>Improving spacing, hierarchy, and consistency so simple pages feel more complete and polished.</p>
+        </div>
+      </div>
     </section>
 
-    <section class="content-panel">
-      <ul id="cards" class="grid">
-        <li>
-          <h2>Card 1</h2>
-          <p>...</p>
-        </li>
-        <li>
-          <h2>Card 2</h2>
-          <p>...</p>
-        </li>
-        <li>
-          <h2>Card 3</h2>
-          <p>...</p>
-        </li>
-        <li>
-          <h2>Card 4</h2>
-          <p>...</p>
-        </li>
-        <li>
-          <h2>Card 5</h2>
-          <p>...</p>
-        </li>
-      </ul>
+    <section id="projects" class="content-panel">
+      <p class="eyebrow">Projects</p>
+      <h2>Current site work</h2>
+      <div class="project-list">
+        <article class="project-card">
+          <h3>Responsive Homepage</h3>
+          <p>Refined the homepage layout so media, content sections, and side navigation work across screen sizes.</p>
+        </article>
+        <article class="project-card">
+          <h3>Mobile Sidebar Navigation</h3>
+          <p>Implemented slide-in sidebars with overlay control to keep navigation usable on smaller devices.</p>
+        </article>
+        <article class="project-card">
+          <h3>Personal Profile Page</h3>
+          <p>Reworked the original demo page into a personal homepage with clearer structure and purpose.</p>
+        </article>
+      </div>
     </section>
 
+    <section id="contact" class="content-panel">
+      <p class="eyebrow">Contact</p>
+      <h2>Get in touch</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Email</h3>
+          <p><a href="mailto:Alex021126@oulook.com">Alex021126@oulook.com</a></p>
+        </div>
+        <div class="contact-card">
+          <h3>Phone</h3>
+          <p><a href="tel:+8617602336743">+86 176 0233 6743</a><br><a href="tel:+6594481960">+65 9448 1960</a></p>
+        </div>
+        <div class="contact-card">
+          <h3>Focus</h3>
+          <p>Responsive frontend pages, personal projects, and cleaner interface structure.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer> <!-- 本站所有网页的统一页脚 -->
-
+  <footer>
     <br>
-      <p>Contact the author of this page:</p>
-
+    <p>Contact the author of this page:</p>
     <address>
-      <a href="mailto:2385920112@qq.com">2385920112@qq.com</a><br>
-      <a href="tel:+86 17602336743">17602336743</a>
+      <a href="mailto:Alex021126@oulook.com">Alex021126@oulook.com</a><br>
+      <a href="tel:+8617602336743">+86 176 0233 6743</a><br>
+      <a href="tel:+6594481960">+65 9448 1960</a>
     </address>
     <p>© Alex. All rights reserved.</p>
   </footer>

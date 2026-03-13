@@ -12,6 +12,12 @@ function closeAllSidebars() {
   document.body.classList.remove('sidebar-open', 'left-open', 'right-open');
 }
 
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    closeAllSidebars();
+  }
+});
+
 function setupPageTransitions() {
   requestAnimationFrame(() => {
     document.body.classList.add('page-ready');
@@ -54,7 +60,7 @@ function setupPageSearch() {
   const input = form?.querySelector('input[type="search"]');
   const status = document.querySelector('.search-status');
   const searchable = Array.from(
-    document.querySelectorAll('main h1, main h2, main p, main li, main caption, main th, main td, main label, main .job-title')
+    document.querySelectorAll('main h1, main h2, main h3, main p, main li, main figcaption')
   );
 
   function clearHighlights() {
@@ -85,75 +91,54 @@ function setupPageSearch() {
 
 setupPageSearch();
 
-const verseChoose = document.querySelector('#verse-choose');
-const poemDisplay = document.querySelector('pre');
-const verseFallbacks = {
-  verse1: `Lo! 'tis a gala night
-   Within the lonesome latter years!
-An angel throng, bewinged, bedight
-   In veils, and drowned in tears,
-Sit in a theatre, to see
-   A play of hopes and fears,
-While the orchestra breathes fitfully
-   The music of the spheres.
-Mimes, in the form of God on high,
-   Mutter and mumble low,
-And hither and thither fly-
-   Mere puppets they, who come and go
-At bidding of vast formless things
-   That shift the scenery to and fro,
-Flapping from out their Condor wings
-   Invisible Woe!`,
-  verse2: `That motley drama- oh, be sure
-   It shall not be forgot!
-With its Phantom chased for evermore,
-   By a crowd that seize it not,
-Through a circle that ever returneth in
-   To the self-same spot,
-And much of Madness, and more of Sin,
-   And Horror the soul of the plot.`,
-  verse3: `But see, amid the mimic rout
-   A crawling shape intrude!
-A blood-red thing that writhes from out
-   The scenic solitude!
-It writhes!- it writhes!- with mortal pangs
-   The mimes become its food,
-And seraphs sob at vermin fangs
-   In human gore imbued.`,
-  verse4: `But see, amid the mimic rout
-   A crawling shape intrude!
-A blood-red thing that writhes from out
-   The scenic solitude!
-It writhes!- it writhes!- with mortal pangs
-   The mimes become its food,
-And seraphs sob at vermin fangs
-   In human gore imbued.`
-};
+function setupPhotoViewer() {
+  const viewerImage = document.querySelector('#viewerImage');
+  const viewerTitle = document.querySelector('#viewerTitle');
+  const viewerDescription = document.querySelector('#viewerDescription');
+  const thumbs = Array.from(document.querySelectorAll('.viewer-thumb'));
+  const prevButton = document.querySelector('#viewerPrev');
+  const nextButton = document.querySelector('#viewerNext');
 
-verseChoose?.addEventListener('change', () => {
-  updateDisplay(verseChoose.value);
-});
+  if (!viewerImage || !viewerTitle || !viewerDescription || thumbs.length === 0) {
+    return;
+  }
 
-function updateDisplay(verse) {
-  const normalized = verse.replace(/\s+/g, '').toLowerCase();
-  const url = `text/${normalized}.txt`;
+  let currentIndex = thumbs.findIndex((thumb) => thumb.classList.contains('is-active'));
+  if (currentIndex < 0) {
+    currentIndex = 0;
+  }
 
-  fetch(url)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
-      return response.text();
-    })
-    .then((text) => {
-      poemDisplay.textContent = text;
-    })
-    .catch((error) => {
-      poemDisplay.textContent = verseFallbacks[normalized] || `Failed to load the poem: ${error.message}`;
+  function renderSlide(index) {
+    const thumb = thumbs[index];
+    if (!thumb) {
+      return;
+    }
+
+    viewerImage.src = thumb.dataset.image;
+    viewerImage.alt = thumb.dataset.alt;
+    viewerTitle.textContent = thumb.dataset.title;
+    viewerDescription.textContent = thumb.dataset.description;
+
+    thumbs.forEach((item, itemIndex) => {
+      item.classList.toggle('is-active', itemIndex === index);
     });
+
+    currentIndex = index;
+  }
+
+  thumbs.forEach((thumb, index) => {
+    thumb.addEventListener('click', () => {
+      renderSlide(index);
+    });
+  });
+
+  prevButton?.addEventListener('click', () => {
+    renderSlide((currentIndex - 1 + thumbs.length) % thumbs.length);
+  });
+
+  nextButton?.addEventListener('click', () => {
+    renderSlide((currentIndex + 1) % thumbs.length);
+  });
 }
 
-updateDisplay('Verse 1');
-if (verseChoose) {
-  verseChoose.value = 'Verse 1';
-}
+setupPhotoViewer();

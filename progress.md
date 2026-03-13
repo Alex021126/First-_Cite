@@ -1,6 +1,6 @@
 Original prompt: 我现在添加了网页游戏开发skills，把弹跳小球换成一个够有意思的桌面和移动端都玩的游戏
 
-- Replaced the old bouncing-ball demo in `bouncing-balls-start/` with `Pulse Runner`, a canvas survival + collection game designed for keyboard and touch.
+- Replaced the old bouncing-ball demo with `Pulse Runner`, now organized under `pages/games/pulse-runner/` as a canvas survival + collection game designed for keyboard and touch.
 - Added required hooks: `window.render_game_to_text` and `window.advanceTime(ms)`.
 - Added desktop controls (`WASD`/arrows, `Space`, `P`, `F`) and mobile controls (left touch pad plus on-canvas `PULSE` button).
 - Installed `playwright` locally in the workspace and under the `develop-web-game` skill so the provided test client could run.
