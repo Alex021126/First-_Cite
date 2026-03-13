@@ -43,6 +43,7 @@ h3 {
 .content-panel {
   width: 100%;
   max-width: 62rem;
+  min-width: 0;
   padding: 1.45rem;
   background: var(--surface);
   border: 1px solid var(--line-soft);
@@ -186,8 +187,15 @@ h3 {
 }
 
 @media (max-width: 640px) {
+  .personal-layout {
+    width: 100%;
+    max-width: 100%;
+  }
+
   .hero-panel,
   .content-panel {
+    width: 100%;
+    max-width: 100%;
     padding: 1rem;
   }
 

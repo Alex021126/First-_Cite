@@ -314,6 +314,10 @@ aside h2 {
   backdrop-filter: blur(14px);
 }
 
+.index > * {
+  min-width: 0;
+}
+
 .index a {
   font-size: 0.88rem;
   font-weight: 500;
@@ -390,6 +394,63 @@ aside h2 {
   background: linear-gradient(120deg, rgba(251, 191, 36, 0.35), rgba(253, 224, 71, 0.65));
   border-radius: 0.4rem;
   box-shadow: 0 0 0 0.2rem rgba(250, 204, 21, 0.2);
+}
+
+@media (max-width: 1024px) {
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  main,
+  .has-sidebars,
+  .has-sidebars > article {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .index {
+    width: calc(100% - 1rem);
+    margin: 0.35rem auto 0.75rem;
+    padding: 0.75rem;
+    border-radius: 1rem;
+  }
+
+  .index form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .index {
+    gap: 0.6rem;
+    padding: 0.65rem;
+  }
+
+  .nav-toggle {
+    flex: 1 1 calc(50% - 0.6rem);
+  }
+
+  .index a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 calc(50% - 0.6rem);
+    min-height: 2.5rem;
+  }
+
+  .index a[href*="pulse-runner"] {
+    display: none;
+  }
+
+  .index form {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .index form input[type="search"] {
+    width: 100%;
+    min-width: 0;
+  }
 }
 
 
