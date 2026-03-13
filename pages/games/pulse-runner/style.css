@@ -11,7 +11,9 @@ body {
   overflow: hidden;
   font-family: "Trebuchet MS", "Verdana", sans-serif;
   background:
-    radial-gradient(circle at top, #21476b 0%, #122235 42%, #08111b 100%);
+    radial-gradient(circle at 20% 10%, rgba(76, 146, 212, 0.34), transparent 22%),
+    radial-gradient(circle at 80% 18%, rgba(72, 222, 199, 0.18), transparent 18%),
+    radial-gradient(circle at bottom, #21476b 0%, #122235 42%, #08111b 100%);
   color: #f5f0e6;
 }
 
@@ -26,11 +28,37 @@ body {
   box-sizing: border-box;
 }
 
-.back-link {
+.game-shell::before,
+.game-shell::after {
+  content: "";
   position: absolute;
-  top: max(14px, env(safe-area-inset-top));
-  left: max(14px, env(safe-area-inset-left));
+  inset: 8% 4%;
+  border-radius: 40px;
+  pointer-events: none;
+}
+
+.game-shell::before {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(70, 175, 255, 0.14), transparent 28%),
+    radial-gradient(circle at 80% 70%, rgba(118, 255, 220, 0.09), transparent 22%);
+  filter: blur(34px);
+}
+
+.game-shell::after {
+  border: 1px solid rgba(147, 205, 255, 0.1);
+  opacity: 0.6;
+}
+
+.shell-actions {
+  position: absolute;
+  inset: max(14px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) auto max(14px, env(safe-area-inset-left));
   z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.back-link {
   padding: 9px 15px;
   border-radius: 999px;
   background: rgba(9, 17, 27, 0.58);
@@ -43,6 +71,25 @@ body {
   backdrop-filter: blur(8px);
 }
 
+.mode-link {
+  padding: 9px 15px;
+  border-radius: 999px;
+  border: 1px solid rgba(129, 255, 223, 0.28);
+  background: rgba(8, 25, 40, 0.72);
+  color: #bff9ef;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-family: inherit;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.back-link:hover,
+.mode-link:hover {
+  background: rgba(13, 31, 49, 0.88);
+}
+
 canvas {
   display: block;
   width: min(100%, 1220px);
@@ -50,10 +97,34 @@ canvas {
   max-height: calc(100vh - 24px);
   border-radius: 30px;
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.45),
+    0 28px 90px rgba(0, 0, 0, 0.48),
+    0 0 0 1px rgba(112, 184, 255, 0.12),
     inset 0 0 0 1px rgba(255, 255, 255, 0.08);
   touch-action: none;
   background: linear-gradient(180deg, #17304d 0%, #0d1826 100%);
+}
+
+.orientation-note {
+  position: absolute;
+  left: 50%;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(7, 16, 25, 0.72);
+  color: #d8f7ff;
+  border: 1px solid rgba(155, 224, 255, 0.12);
+  backdrop-filter: blur(10px);
+  font-size: 0.82rem;
+  letter-spacing: 0.01em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.orientation-note.visible {
+  opacity: 1;
 }
 
 @media (max-width: 720px) {
@@ -63,9 +134,12 @@ canvas {
     padding: 8px;
   }
 
-  .back-link {
-    top: max(10px, env(safe-area-inset-top));
-    left: max(10px, env(safe-area-inset-left));
+  .shell-actions {
+    inset: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) auto max(10px, env(safe-area-inset-left));
+  }
+
+  .back-link,
+  .mode-link {
     padding: 7px 12px;
   }
 
@@ -73,5 +147,11 @@ canvas {
     width: 100%;
     max-height: calc(100vh - 16px);
     border-radius: 22px;
+  }
+
+  .orientation-note {
+    width: min(88vw, 30rem);
+    text-align: center;
+    border-radius: 20px;
   }
 }

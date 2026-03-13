@@ -1,5 +1,7 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
+const immersiveBtn = document.getElementById("immersive-btn");
+const orientationNote = document.getElementById("orientation-note");
 
 const WORLD = { width: 960, height: 600 };
 const POINTER = { x: 0, y: 0, active: false, id: null };
@@ -78,6 +80,47 @@ function resizeCanvas() {
   canvas.height = WORLD.height;
   canvas.style.width = `${WORLD.width * scale}px`;
   canvas.style.height = `${WORLD.height * scale}px`;
+}
+
+function isPhoneSized() {
+  return Math.min(window.innerWidth, window.innerHeight) < 820;
+}
+
+function shouldSuggestLandscape() {
+  return isPhoneSized() && window.innerHeight > window.innerWidth;
+}
+
+async function requestLandscapeMode() {
+  try {
+    if (!document.fullscreenElement && canvas.requestFullscreen) {
+      await canvas.requestFullscreen();
+    }
+  } catch {}
+
+  try {
+    if (screen.orientation?.lock) {
+      await screen.orientation.lock("landscape");
+    }
+  } catch {}
+
+  updateOrientationUI();
+}
+
+function updateOrientationUI() {
+  if (immersiveBtn) {
+    immersiveBtn.textContent = document.fullscreenElement ? "Exit Full" : "Landscape";
+  }
+
+  if (!orientationNote) {
+    return;
+  }
+
+  if (shouldSuggestLandscape()) {
+    orientationNote.textContent = "Rotate your phone or tap Landscape for the full-width arena.";
+    orientationNote.classList.add("visible");
+  } else {
+    orientationNote.classList.remove("visible");
+  }
 }
 
 function roundedRect(x, y, width, height, radius) {
@@ -251,15 +294,10 @@ function beginPointerControl(event) {
   POINTER.active = true;
 
   if (state.mode === "start" || state.mode === "gameover" || state.mode === "win") {
-    const overlay = overlayMetrics();
-    if (
-      point.x >= overlay.x &&
-      point.x <= overlay.x + overlay.width &&
-      point.y >= overlay.y &&
-      point.y <= overlay.y + overlay.height
-    ) {
-      resetGame();
+    if (event.pointerType === "touch") {
+      requestLandscapeMode();
     }
+    resetGame();
     return;
   }
 
@@ -497,6 +535,18 @@ function drawBackground() {
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, WORLD.width, WORLD.height);
 
+  const glow = ctx.createRadialGradient(WORLD.width * 0.5, WORLD.height * 0.2, 50, WORLD.width * 0.5, WORLD.height * 0.2, 340);
+  glow.addColorStop(0, "rgba(105, 186, 255, 0.18)");
+  glow.addColorStop(1, "rgba(105, 186, 255, 0)");
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, WORLD.width, WORLD.height);
+
+  const trailGlow = ctx.createRadialGradient(WORLD.width * 0.84, WORLD.height * 0.72, 10, WORLD.width * 0.84, WORLD.height * 0.72, 220);
+  trailGlow.addColorStop(0, "rgba(117, 255, 219, 0.13)");
+  trailGlow.addColorStop(1, "rgba(117, 255, 219, 0)");
+  ctx.fillStyle = trailGlow;
+  ctx.fillRect(0, 0, WORLD.width, WORLD.height);
+
   ctx.strokeStyle = "rgba(158, 214, 255, 0.08)";
   ctx.lineWidth = 1;
   for (let x = 40; x < WORLD.width; x += 40) {
@@ -518,13 +568,25 @@ function drawBackground() {
     ctx.fillStyle = "rgba(255,255,255,0.18)";
     ctx.fillRect(px, py, 2, 2);
   }
+
+  ctx.strokeStyle = "rgba(126, 214, 255, 0.1)";
+  ctx.lineWidth = 2;
+  roundedRect(12, 12, WORLD.width - 24, WORLD.height - 24, 26);
+  ctx.stroke();
 }
 
 function drawHud() {
   roundedRect(20, 18, 214, 88, 20);
-  ctx.fillStyle = "rgba(7, 16, 25, 0.62)";
+  const leftHud = ctx.createLinearGradient(20, 18, 234, 106);
+  leftHud.addColorStop(0, "rgba(6, 18, 32, 0.82)");
+  leftHud.addColorStop(1, "rgba(9, 28, 45, 0.58)");
+  ctx.fillStyle = leftHud;
   ctx.fill();
   roundedRect(WORLD.width - 244, 18, 224, 88, 20);
+  const rightHud = ctx.createLinearGradient(WORLD.width - 244, 18, WORLD.width - 20, 106);
+  rightHud.addColorStop(0, "rgba(6, 18, 32, 0.8)");
+  rightHud.addColorStop(1, "rgba(9, 28, 45, 0.56)");
+  ctx.fillStyle = rightHud;
   ctx.fill();
 
   ctx.fillStyle = "#f6f0dd";
@@ -673,7 +735,10 @@ function drawOverlay(title, subtitle, buttonLabel) {
   const overlay = overlayMetrics();
 
   roundedRect(overlay.x, overlay.y, overlay.width, overlay.height, 24);
-  ctx.fillStyle = "rgba(4, 10, 18, 0.74)";
+  const panelGradient = ctx.createLinearGradient(overlay.x, overlay.y, overlay.x + overlay.width, overlay.y + overlay.height);
+  panelGradient.addColorStop(0, "rgba(4, 10, 18, 0.78)");
+  panelGradient.addColorStop(1, "rgba(6, 20, 34, 0.68)");
+  ctx.fillStyle = panelGradient;
   ctx.fill();
   ctx.strokeStyle = "rgba(155, 224, 255, 0.12)";
   ctx.lineWidth = 2;
@@ -713,13 +778,18 @@ function drawOverlay(title, subtitle, buttonLabel) {
     ctx.fillText(badge.text, x + badgeWidth / 2, badgeY + 42);
   });
 
-  roundedRect(overlay.buttonX, overlay.buttonY, overlay.buttonWidth, overlay.buttonHeight, 18);
   ctx.fillStyle = "#8ef3df";
-  ctx.fill();
-  ctx.fillStyle = "#0c1a28";
-  ctx.font = "bold 24px Trebuchet MS";
-  ctx.fillText(buttonLabel, overlay.buttonX + overlay.buttonWidth / 2, overlay.buttonY + 35);
+  ctx.font = "bold 20px Trebuchet MS";
+  ctx.fillText(buttonLabel, WORLD.width / 2, overlay.buttonY + 34);
   ctx.textAlign = "left";
+
+  if (shouldSuggestLandscape()) {
+    ctx.fillStyle = "rgba(217, 248, 255, 0.78)";
+    ctx.font = "15px Trebuchet MS";
+    ctx.textAlign = "center";
+    ctx.fillText("Best on mobile in landscape.", WORLD.width / 2, overlay.y + overlay.height - 18);
+    ctx.textAlign = "left";
+  }
 }
 
 function render() {
@@ -738,13 +808,13 @@ function render() {
   }
 
   if (state.mode === "start") {
-    drawOverlay("Pulse Runner", "A compact survival run built for desktop and mobile.", "Start Run");
+    drawOverlay("Pulse Runner", "A compact survival run built for desktop and mobile.", "Tap Anywhere");
   } else if (state.mode === "paused") {
     drawOverlay("Paused", "Tap or press P to resume.", "Resume");
   } else if (state.mode === "gameover") {
-    drawOverlay("Run Failed", "Storm took the lane. Try a cleaner route.", "Try Again");
+    drawOverlay("Run Failed", "Storm took the lane. Tap anywhere to try again.", "Tap Anywhere");
   } else if (state.mode === "win") {
-    drawOverlay("Run Complete", "All shards secured before the storm closed in.", "Play Again");
+    drawOverlay("Run Complete", "All shards secured before the storm closed in. Tap anywhere to play again.", "Tap Anywhere");
   }
 }
 
@@ -811,7 +881,8 @@ function renderGameToText() {
     controls: {
       keyboard: "WASD/arrows to move, space to pulse, p to pause, f for fullscreen",
       touch: "drag left pad to move, tap pulse button to pulse"
-    }
+    },
+    orientationHint: shouldSuggestLandscape()
   });
 }
 
@@ -828,6 +899,20 @@ window.advanceTime = advanceTime;
 
 window.addEventListener("resize", resizeCanvas);
 document.addEventListener("fullscreenchange", resizeCanvas);
+document.addEventListener("fullscreenchange", updateOrientationUI);
+window.addEventListener("orientationchange", updateOrientationUI);
+window.addEventListener("resize", updateOrientationUI);
+
+immersiveBtn?.addEventListener("click", async () => {
+  if (document.fullscreenElement) {
+    try {
+      await document.exitFullscreen();
+    } catch {}
+    updateOrientationUI();
+    return;
+  }
+  requestLandscapeMode();
+});
 
 window.addEventListener("keydown", (event) => {
   const key = normalizeKeyName(event.key);
@@ -872,5 +957,6 @@ canvas.addEventListener("pointerup", endPointerControl);
 canvas.addEventListener("pointercancel", endPointerControl);
 
 resizeCanvas();
+updateOrientationUI();
 render();
 animationFrame = requestAnimationFrame(frame);

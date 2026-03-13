@@ -35,9 +35,9 @@
       <h2>Menu</h2>
       <ul>
         <li><a href="#intro">Intro</a></li>
-        <li><a href="#focus">Focus</a></li>
-        <li><a href="#highlights">Highlights</a></li>
+        <li><a href="#stocks">Stocks</a></li>
         <li><a href="#photography">Photography</a></li>
+        <li><a href="pages/games/pulse-runner/ball.html">Pulse Runner</a></li>
         <li><a href="#foot">Contact</a></li>
       </ul>
     </div>
@@ -68,71 +68,54 @@
       <section id="intro" class="hero-home">
         <p class="eyebrow">Home</p>
         <h1>Building a cleaner personal web presence</h1>
-        <p class="lead">
-          This site is now focused on a simple personal homepage experience instead of scattered demo exercises. The
-          goal is to present work, learning direction, and useful links in a cleaner structure.
-        </p>
         <div class="hero-actions">
           <a href="personal.html" class="hero-link">Open Profile</a>
-          <a href="#highlights" class="hero-link secondary">See Highlights</a>
+          <a href="#photography" class="hero-link secondary">Photography</a>
         </div>
       </section>
 
-      <section id="focus" class="content-panel">
-        <p class="eyebrow">Focus</p>
-        <h2>What this site is for</h2>
-        <div class="focus-grid">
-          <div class="info-card">
-            <h3>Personal Profile</h3>
-            <p>A dedicated page that introduces background, current learning direction, and contact details.</p>
-          </div>
-          <div class="info-card">
-            <h3>Responsive Layout</h3>
-            <p>Every core page is being improved to work reliably on desktop and mobile without layout breakage.</p>
-          </div>
-          <div class="info-card">
-            <h3>Clean Navigation</h3>
-            <p>Side panels, direct links, and search are kept lightweight so the structure stays easy to understand.</p>
-          </div>
+      <section id="stocks" class="content-panel stock-panel">
+        <div class="stock-copy">
+          <h2>Stocks</h2>
         </div>
-      </section>
 
-      <section id="highlights" class="content-panel">
-        <p class="eyebrow">Highlights</p>
-        <h2>Current priorities</h2>
-        <div class="highlight-list">
-          <div class="highlight-item">
-            <span class="highlight-number">01</span>
-            <div>
-              <h3>Consistent page structure</h3>
-              <p>Replacing old practice blocks with sections that reflect a real personal site.</p>
-            </div>
+        <form class="stock-search-form" id="stockSearchForm" autocomplete="off">
+          <div class="stock-search-row">
+            <input
+              id="stockSearchInput"
+              name="stock"
+              type="search"
+              list="stockSuggestions"
+              placeholder="Try TSM, NVDA, AMD, AAPL..."
+              aria-describedby="stockSearchStatus"
+            >
+            <button type="submit" class="stock-add-button">Add Stock</button>
           </div>
-          <div class="highlight-item">
-            <span class="highlight-number">02</span>
-            <div>
-              <h3>Better mobile behavior</h3>
-              <p>Improving navigation, spacing, and content flow so the interface feels stable on smaller screens.</p>
-            </div>
-          </div>
-          <div class="highlight-item">
-            <span class="highlight-number">03</span>
-            <div>
-              <h3>Sharper presentation</h3>
-              <p>Keeping typography, grouping, and content hierarchy clear enough for the site to feel intentional.</p>
-            </div>
-          </div>
+          <datalist id="stockSuggestions"></datalist>
+          <p class="stock-search-status" id="stockSearchStatus" aria-live="polite"></p>
+        </form>
+
+        <div class="stock-ticker-strip-wrap">
+          <div class="stock-ticker-strip" id="stockTickerStrip" aria-live="polite"></div>
         </div>
+
+        <div class="stock-selector-strip" id="stockSelectorStrip" aria-label="Select a stock chart"></div>
+
+        <section class="stock-chart-panel">
+          <div class="stock-chart-head">
+            <div>
+              <h3 id="stockChartTitle">TSM</h3>
+              <p id="stockChartSubtitle">Taiwan Semiconductor</p>
+            </div>
+          </div>
+          <div class="stock-chart-shell" id="stockChartShell"></div>
+        </section>
       </section>
 
       <section id="photography" class="content-panel photography-panel">
         <div class="photography-copy">
           <p class="eyebrow">Photography</p>
-          <h2>A cleaner photography showcase</h2>
-          <p>
-            This section now presents a few selected works up front, then keeps one larger frame that can be switched
-            manually. It reads more clearly than a dense collage and feels closer to a real portfolio page.
-          </p>
+          <h2>Photography</h2>
         </div>
 
         <div class="photo-strip">
@@ -140,21 +123,18 @@
             <img src="assets/images/pic1.jpg" alt="Golden ginkgo leaves in warm natural light.">
             <figcaption>
               <span>Autumn Texture</span>
-              <small>Warm detail and layered color</small>
             </figcaption>
           </figure>
           <figure class="photo-card">
             <img src="assets/images/pic3.jpg" alt="Purple and white flowers in close focus.">
             <figcaption>
               <span>Floral Study</span>
-              <small>Color contrast and shallow depth</small>
             </figcaption>
           </figure>
           <figure class="photo-card">
             <img src="assets/images/_DSC1214.JPG" alt="Portrait-style photograph with soft natural light.">
             <figcaption>
               <span>Quiet Portrait</span>
-              <small>Soft light and calm framing</small>
             </figcaption>
           </figure>
         </div>
@@ -168,7 +148,6 @@
             >
             <div class="viewer-caption">
               <p id="viewerTitle">Cinematic Frame</p>
-              <p id="viewerDescription">Wider composition and stronger mood.</p>
             </div>
           </div>
           <div class="viewer-controls">
@@ -180,7 +159,6 @@
                 data-image="assets/images/c7798a394c4a96896a5a53cf6a69768.jpg"
                 data-alt="Atmospheric scenery with a cinematic composition."
                 data-title="Cinematic Frame"
-                data-description="Wider composition and stronger mood."
               >01</button>
               <button
                 type="button"
@@ -188,7 +166,6 @@
                 data-image="assets/images/pic4.jpg"
                 data-alt="Detailed patterned wall artwork with earthy colors."
                 data-title="Pattern Study"
-                data-description="Surface detail, geometry, and texture."
               >02</button>
               <button
                 type="button"
@@ -196,7 +173,6 @@
                 data-image="assets/images/pic5.jpg"
                 data-alt="Large moth resting on a leaf in close view."
                 data-title="Still Creature"
-                data-description="Quiet macro focus and natural contrast."
               >03</button>
             </div>
             <button type="button" class="viewer-button" id="viewerNext">Next</button>
@@ -209,7 +185,6 @@
   <footer>
     <a id="foot"></a>
     <br>
-    <p>Contact the author of this page:</p>
     <address>
       <a href="mailto:Alex021126@oulook.com">Alex021126@oulook.com</a><br>
       <a href="tel:+8617602336743">+86 176 0233 6743</a><br>

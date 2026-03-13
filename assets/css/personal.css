@@ -1,19 +1,19 @@
 h1 {
   color: #1d1d1f;
-  font-size: clamp(2rem, 1.3rem + 2vw, 3.3rem);
+  font-size: clamp(1.8rem, 1.15rem + 1.8vw, 2.9rem);
   font-family: "SF Pro Display", "PingFang SC", "Hiragino Sans GB", sans-serif;
   letter-spacing: 0.01em;
   margin: 0 0 0.75rem;
 }
 
 h2 {
-  font-size: clamp(1.2rem, 1rem + 0.7vw, 1.7rem);
+  font-size: clamp(1.1rem, 0.95rem + 0.55vw, 1.5rem);
   color: #0f172a;
   margin: 0 0 0.9rem;
 }
 
 h3 {
-  font-size: 1rem;
+  font-size: 0.95rem;
   margin: 0 0 0.55rem;
   color: #111827;
 }
@@ -83,7 +83,7 @@ h3 {
 .eyebrow {
   margin: 0 0 0.55rem;
   color: var(--brand);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -93,14 +93,14 @@ h3 {
   color: #6e6e73;
   font-weight: 600;
   margin-bottom: 0.95rem;
-  font-size: 1rem;
+  font-size: 0.92rem;
 }
 
 .lead,
 .hero-panel p,
 .content-panel p,
 .content-panel li {
-  font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1rem);
+  font-size: clamp(0.88rem, 0.84rem + 0.18vw, 0.94rem);
   line-height: 1.7;
 }
 
@@ -115,8 +115,9 @@ h3 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.5rem;
-  padding: 0.35rem 1rem;
+  min-height: 2.35rem;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.88rem;
   border-radius: 999px;
   background: linear-gradient(135deg, var(--brand), var(--brand-strong));
   color: #fff;
@@ -169,7 +170,7 @@ h3 {
   display: inline-block;
   margin-bottom: 0.35rem;
   color: #111827;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }

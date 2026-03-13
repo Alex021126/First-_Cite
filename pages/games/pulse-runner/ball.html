@@ -3,13 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <title>Pulse Runner</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main class="game-shell">
-    <a class="back-link" href="../../../index.html">Back</a>
+    <div class="shell-actions">
+      <a class="back-link" href="../../../index.html">Back</a>
+      <button id="immersive-btn" class="mode-link" type="button">Landscape</button>
+    </div>
     <canvas id="game" width="960" height="600" aria-label="Pulse Runner game canvas"></canvas>
+    <p id="orientation-note" class="orientation-note" aria-live="polite"></p>
   </main>
   <script src="main.js"></script>
 </body>
