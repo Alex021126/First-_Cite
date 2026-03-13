@@ -146,6 +146,45 @@ aside h2 {
   color: var(--text-main);
 }
 
+#leftside ul {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+#leftside li {
+  list-style: none;
+  margin: 0 0 0.45rem;
+}
+
+#leftside a,
+aside a {
+  display: block;
+  padding: 0.62rem 0.75rem;
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.66);
+}
+
+aside p {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+}
+
+aside br {
+  display: none;
+}
+
+aside strong {
+  margin-top: 0.95rem;
+  margin-bottom: 0.1rem;
+}
+
+aside strong:first-child {
+  margin-top: 0;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .sidebar-open {
@@ -199,7 +238,7 @@ aside h2 {
     transform: translateX(-100%);
     transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
     z-index: 20;
-    padding-top: 5.4rem;
+    padding: 4.8rem 0.9rem 1rem;
   }
 
   .left-open #leftside {
@@ -220,7 +259,7 @@ aside h2 {
     transform: translateX(100%);
     transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
     z-index: 20;
-    padding-top: 5.4rem;
+    padding: 4.8rem 0.9rem 1rem;
   }
 
   .right-open aside {
@@ -424,13 +463,12 @@ aside h2 {
 
 @media (max-width: 640px) {
   .index {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    gap: 0.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr 1fr auto;
+    align-items: center;
+    gap: 0.45rem;
     padding: 0.65rem;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    overflow: visible;
   }
 
   .nav-toggle {
@@ -440,18 +478,21 @@ aside h2 {
     font-size: 0.84rem;
   }
 
+  .nav-toggle:first-of-type {
+    justify-self: start;
+  }
+
+  .nav-toggle:last-of-type {
+    justify-self: end;
+  }
+
   .index a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    flex: 0 0 auto;
     min-height: 2.35rem;
-    padding: 0.3rem 0.8rem;
+    padding: 0.3rem 0.45rem;
     font-size: 0.86rem;
-  }
-
-  .index a[href*="pulse-runner"] {
-    display: none;
   }
 
   .index form {
@@ -460,6 +501,11 @@ aside h2 {
 
   .search-status {
     display: none;
+  }
+
+  #leftside,
+  aside {
+    width: min(84vw, 20rem);
   }
 }
 

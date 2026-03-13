@@ -90,10 +90,49 @@ function shouldSuggestLandscape() {
   return isPhoneSized() && window.innerHeight > window.innerWidth;
 }
 
+function fullscreenElementActive() {
+  return document.fullscreenElement || document.webkitFullscreenElement || document.webkitCurrentFullScreenElement;
+}
+
+async function requestAnyFullscreen(target) {
+  const node = target || canvas;
+  const root = document.documentElement;
+
+  if (node.requestFullscreen) {
+    return node.requestFullscreen();
+  }
+  if (root.requestFullscreen) {
+    return root.requestFullscreen();
+  }
+  if (node.webkitRequestFullscreen) {
+    return node.webkitRequestFullscreen();
+  }
+  if (node.webkitEnterFullscreen) {
+    return node.webkitEnterFullscreen();
+  }
+  if (root.webkitRequestFullscreen) {
+    return root.webkitRequestFullscreen();
+  }
+  return Promise.reject(new Error("fullscreen unsupported"));
+}
+
+async function exitAnyFullscreen() {
+  if (document.exitFullscreen) {
+    return document.exitFullscreen();
+  }
+  if (document.webkitExitFullscreen) {
+    return document.webkitExitFullscreen();
+  }
+  if (document.webkitCancelFullScreen) {
+    return document.webkitCancelFullScreen();
+  }
+  return Promise.resolve();
+}
+
 async function requestLandscapeMode() {
   try {
-    if (!document.fullscreenElement && canvas.requestFullscreen) {
-      await canvas.requestFullscreen();
+    if (!fullscreenElementActive()) {
+      await requestAnyFullscreen(canvas);
     }
   } catch {}
 
@@ -108,7 +147,7 @@ async function requestLandscapeMode() {
 
 function updateOrientationUI() {
   if (immersiveBtn) {
-    immersiveBtn.textContent = document.fullscreenElement ? "Exit Full" : "Landscape";
+    immersiveBtn.textContent = fullscreenElementActive() ? "Exit Full" : "Fullscreen";
   }
 
   if (!orientationNote) {
@@ -116,7 +155,7 @@ function updateOrientationUI() {
   }
 
   if (shouldSuggestLandscape()) {
-    orientationNote.textContent = "Rotate your phone or tap Landscape for the full-width arena.";
+    orientationNote.textContent = "Rotate your phone or tap Fullscreen for the widest arena view.";
     orientationNote.classList.add("visible");
   } else {
     orientationNote.classList.remove("visible");
@@ -787,7 +826,7 @@ function drawOverlay(title, subtitle, buttonLabel) {
     ctx.fillStyle = "rgba(217, 248, 255, 0.78)";
     ctx.font = "15px Trebuchet MS";
     ctx.textAlign = "center";
-    ctx.fillText("Best on mobile in landscape.", WORLD.width / 2, overlay.y + overlay.height - 18);
+    ctx.fillText("Best on mobile in fullscreen landscape.", WORLD.width / 2, overlay.y + overlay.height - 18);
     ctx.textAlign = "left";
   }
 }
@@ -829,11 +868,11 @@ function frame(timestamp) {
 }
 
 function toggleFullscreen() {
-  if (document.fullscreenElement) {
-    document.exitFullscreen().catch(() => {});
+  if (fullscreenElementActive()) {
+    exitAnyFullscreen().catch(() => {});
     return;
   }
-  canvas.requestFullscreen?.().catch(() => {});
+  requestAnyFullscreen(canvas).catch(() => {});
 }
 
 function pressed(code, key) {
@@ -904,9 +943,9 @@ window.addEventListener("orientationchange", updateOrientationUI);
 window.addEventListener("resize", updateOrientationUI);
 
 immersiveBtn?.addEventListener("click", async () => {
-  if (document.fullscreenElement) {
+  if (fullscreenElementActive()) {
     try {
-      await document.exitFullscreen();
+      await exitAnyFullscreen();
     } catch {}
     updateOrientationUI();
     return;
@@ -940,7 +979,7 @@ window.addEventListener("keydown", (event) => {
     toggleFullscreen();
   }
   if (key === "escape" && document.fullscreenElement) {
-    document.exitFullscreen().catch(() => {});
+    exitAnyFullscreen().catch(() => {});
   }
 });
 
