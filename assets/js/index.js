@@ -179,10 +179,111 @@ function setupStockWidgets() {
   const chartShell = document.querySelector('#stockChartShell');
   const chartTitle = document.querySelector('#stockChartTitle');
   const chartSubtitle = document.querySelector('#stockChartSubtitle');
+  const stockMapShell = document.querySelector('#stockMapShell');
+  const stockMapHotspots = document.querySelector('#stockMapHotspots');
+  const stockMapLegend = document.querySelector('#stockMapLegend');
+  const globalIndexTitle = document.querySelector('#globalIndexTitle');
+  const globalIndexSubtitle = document.querySelector('#globalIndexSubtitle');
+  const themeMedia = window.matchMedia('(prefers-color-scheme: dark)');
   const activeSymbols = new Set();
+  const globalIndexRegions = [
+    {
+      id: 'us',
+      label: 'North America',
+      shortLabel: 'US',
+      description: 'S&P 500',
+      symbol: 'FOREXCOM:SPXUSD',
+      chartTitle: 'S&P 500',
+      chartSubtitle: 'North America representative index',
+      top: '31%',
+      left: '15%',
+    },
+    {
+      id: 'europe',
+      label: 'Europe',
+      shortLabel: 'EU',
+      description: 'DAX',
+      symbol: 'INDEX:DEU40',
+      chartTitle: 'DAX',
+      chartSubtitle: 'Europe representative index',
+      top: '26%',
+      left: '47%',
+    },
+    {
+      id: 'shanghai',
+      label: 'Shanghai',
+      shortLabel: 'SH',
+      description: '上证指数',
+      symbol: 'INDEX:000001',
+      chartTitle: '上证指数',
+      chartSubtitle: 'Shanghai representative index',
+      top: '28%',
+      left: '66%',
+    },
+    {
+      id: 'shenzhen',
+      label: 'Shenzhen',
+      shortLabel: 'SZ',
+      description: '深证成指',
+      symbol: 'INDEX:399001',
+      chartTitle: '深证成指',
+      chartSubtitle: 'Shenzhen representative index',
+      top: '37%',
+      left: '71%',
+    },
+    {
+      id: 'hongkong',
+      label: 'Hong Kong',
+      shortLabel: 'HK',
+      description: 'Hang Seng',
+      symbol: 'INDEX:HSI',
+      chartTitle: 'Hang Seng',
+      chartSubtitle: 'Hong Kong representative index',
+      top: '39%',
+      left: '72%',
+    },
+    {
+      id: 'japan',
+      label: 'Japan',
+      shortLabel: 'JP',
+      description: 'Nikkei 225',
+      symbol: 'INDEX:NKY',
+      chartTitle: 'Nikkei 225',
+      chartSubtitle: 'Japan representative index',
+      top: '23%',
+      left: '79%',
+    },
+    {
+      id: 'australia',
+      label: 'Australia',
+      shortLabel: 'AU',
+      description: 'ASX 200',
+      symbol: 'ASX:XJO',
+      chartTitle: 'ASX 200',
+      chartSubtitle: 'Australia representative index',
+      top: '72%',
+      left: '82%',
+    },
+  ];
   let selectedSymbol = defaultSymbols[0];
+  let selectedRegionId = 'us';
 
-  if (!form || !input || !status || !tickerStrip || !selectorStrip || !datalist || !chartShell || !chartTitle || !chartSubtitle) {
+  if (
+    !form ||
+    !input ||
+    !status ||
+    !tickerStrip ||
+    !selectorStrip ||
+    !datalist ||
+    !chartShell ||
+    !chartTitle ||
+    !chartSubtitle ||
+    !stockMapShell ||
+    !stockMapHotspots ||
+    !stockMapLegend ||
+    !globalIndexTitle ||
+    !globalIndexSubtitle
+  ) {
     return;
   }
 
@@ -208,6 +309,10 @@ function setupStockWidgets() {
     }) || null;
   }
 
+  function getTradingViewTheme() {
+    return themeMedia.matches ? 'dark' : 'light';
+  }
+
   function mountTradingViewChart(stock) {
     chartShell.replaceChildren();
     chartTitle.textContent = stock.ticker;
@@ -228,7 +333,7 @@ function setupStockWidgets() {
       width: '100%',
       height: '100%',
       locale: 'zh_CN',
-      colorTheme: 'light',
+      theme: getTradingViewTheme(),
       autosize: true,
       interval: 'D',
       timezone: 'Asia/Singapore',
@@ -242,11 +347,103 @@ function setupStockWidgets() {
       save_image: false,
       support_host: 'https://www.tradingview.com',
       fontFamily: '"SF Pro Text", "PingFang SC", sans-serif',
-      isTransparent: true,
+      isTransparent: false,
     });
 
     container.appendChild(script);
     chartShell.appendChild(container);
+  }
+
+  function mountGlobalMap(region) {
+    stockMapShell.replaceChildren();
+    globalIndexTitle.textContent = region.chartTitle;
+    globalIndexSubtitle.textContent = region.chartSubtitle;
+
+    const container = document.createElement('div');
+    container.className = 'tradingview-widget-container';
+
+    const widget = document.createElement('div');
+    widget.className = 'tradingview-widget-container__widget';
+    container.appendChild(widget);
+
+    const script = document.createElement('script');
+    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+    script.async = true;
+    script.text = JSON.stringify({
+      symbol: region.symbol,
+      theme: getTradingViewTheme(),
+      autosize: true,
+      interval: 'D',
+      timezone: 'Asia/Singapore',
+      style: '1',
+      allow_symbol_change: false,
+      calendar: false,
+      details: true,
+      hotlist: false,
+      hide_side_toolbar: true,
+      hide_top_toolbar: false,
+      save_image: false,
+      support_host: 'https://www.tradingview.com',
+      fontFamily: '"SF Pro Text", "PingFang SC", sans-serif',
+      isTransparent: false,
+      locale: 'zh_CN',
+      width: '100%',
+      height: '100%',
+    });
+
+    container.appendChild(script);
+    stockMapShell.appendChild(container);
+  }
+
+  function syncActiveRegionState() {
+    Array.from(stockMapHotspots.querySelectorAll('.stock-map-hotspot')).forEach((button) => {
+      button.classList.toggle('is-active', button.dataset.regionId === selectedRegionId);
+    });
+
+    Array.from(stockMapLegend.querySelectorAll('.stock-map-legend-item')).forEach((item) => {
+      item.classList.toggle('is-active', item.dataset.regionId === selectedRegionId);
+    });
+  }
+
+  function selectRegion(region) {
+    selectedRegionId = region.id;
+    syncActiveRegionState();
+    mountGlobalMap(region);
+  }
+
+  function renderGlobalIndexMap() {
+    stockMapHotspots.replaceChildren();
+    stockMapLegend.replaceChildren();
+
+    globalIndexRegions.forEach((region) => {
+      const hotspot = document.createElement('button');
+      hotspot.type = 'button';
+      hotspot.className = 'stock-map-hotspot';
+      hotspot.dataset.regionId = region.id;
+      hotspot.style.top = region.top;
+      hotspot.style.left = region.left;
+      hotspot.innerHTML = `
+        <strong>${region.shortLabel}</strong>
+        <span>${region.description}</span>
+      `;
+      hotspot.addEventListener('click', () => selectRegion(region));
+      stockMapHotspots.appendChild(hotspot);
+
+      const legendItem = document.createElement('button');
+      legendItem.type = 'button';
+      legendItem.className = 'stock-map-legend-item';
+      legendItem.dataset.regionId = region.id;
+      legendItem.innerHTML = `
+        <strong>${region.label}</strong>
+        <span>${region.chartTitle}</span>
+        <small>${region.chartSubtitle}</small>
+      `;
+      legendItem.addEventListener('click', () => selectRegion(region));
+      stockMapLegend.appendChild(legendItem);
+    });
+
+    const initialRegion = globalIndexRegions.find((region) => region.id === selectedRegionId) || globalIndexRegions[0];
+    selectRegion(initialRegion);
   }
 
   function renderTickerTape() {
@@ -273,9 +470,9 @@ function setupStockWidgets() {
         title: stock.ticker,
       })),
       showSymbolLogo: true,
-      isTransparent: true,
+      isTransparent: false,
       displayMode: 'adaptive',
-      colorTheme: 'light',
+      colorTheme: getTradingViewTheme(),
       locale: 'zh_CN',
     });
     container.appendChild(script);
@@ -374,10 +571,27 @@ function setupStockWidgets() {
     }
   });
 
+  const handleThemeChange = () => {
+    renderTickerTape();
+    const currentRegion = globalIndexRegions.find((region) => region.id === selectedRegionId) || globalIndexRegions[0];
+    mountGlobalMap(currentRegion);
+    const currentStock = stockCatalog.find((stock) => stock.symbol === selectedSymbol);
+    if (currentStock) {
+      mountTradingViewChart(currentStock);
+    }
+  };
+
+  if (typeof themeMedia.addEventListener === 'function') {
+    themeMedia.addEventListener('change', handleThemeChange);
+  } else if (typeof themeMedia.addListener === 'function') {
+    themeMedia.addListener(handleThemeChange);
+  }
+
   defaultSymbols
     .map((symbol) => stockCatalog.find((stock) => stock.symbol === symbol))
     .forEach((stock, index) => addStockButton(stock, { silent: true, selectOnAdd: index === 0 }));
 
+  renderGlobalIndexMap();
   status.textContent = '';
 }
 
