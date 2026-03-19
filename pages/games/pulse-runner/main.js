@@ -90,6 +90,15 @@ function shouldSuggestLandscape() {
   return isPhoneSized() && window.innerHeight > window.innerWidth;
 }
 
+function isIOSLike() {
+  const ua = navigator.userAgent || "";
+  return /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+}
+
+function isStandaloneDisplay() {
+  return window.matchMedia?.("(display-mode: standalone)")?.matches || navigator.standalone === true;
+}
+
 function fullscreenElementActive() {
   return document.fullscreenElement || document.webkitFullscreenElement || document.webkitCurrentFullScreenElement;
 }
@@ -147,7 +156,11 @@ async function requestLandscapeMode() {
 
 function updateOrientationUI() {
   if (immersiveBtn) {
-    immersiveBtn.textContent = fullscreenElementActive() ? "Exit Full" : "Fullscreen";
+    if (isIOSLike() && !fullscreenElementActive() && !isStandaloneDisplay()) {
+      immersiveBtn.textContent = "Add to Home";
+    } else {
+      immersiveBtn.textContent = fullscreenElementActive() ? "Exit Full" : "Fullscreen";
+    }
   }
 
   if (!orientationNote) {
@@ -155,7 +168,9 @@ function updateOrientationUI() {
   }
 
   if (shouldSuggestLandscape()) {
-    orientationNote.textContent = "Rotate your phone or tap Fullscreen for the widest arena view.";
+    orientationNote.textContent = isIOSLike() && !isStandaloneDisplay()
+      ? "On iPhone/iPad, use Safari Share > Add to Home Screen for the closest full-screen mode."
+      : "Rotate your phone or tap Fullscreen for the widest arena view.";
     orientationNote.classList.add("visible");
   } else {
     orientationNote.classList.remove("visible");
@@ -184,21 +199,13 @@ function overlayMetrics() {
         x: 150,
         y: 118,
         width: 660,
-        height: 312,
-        buttonX: 330,
-        buttonY: 352,
-        buttonWidth: 280,
-        buttonHeight: 54
+        height: 312
       }
     : {
         x: 210,
         y: 126,
         width: 540,
-        height: 286,
-        buttonX: 360,
-        buttonY: 340,
-        buttonWidth: 240,
-        buttonHeight: 52
+        height: 286
       };
 }
 
@@ -770,7 +777,7 @@ function drawTouchControls() {
   ctx.globalAlpha = 1;
 }
 
-function drawOverlay(title, subtitle, buttonLabel) {
+function drawOverlay(title, subtitle) {
   const overlay = overlayMetrics();
 
   roundedRect(overlay.x, overlay.y, overlay.width, overlay.height, 24);
@@ -818,8 +825,8 @@ function drawOverlay(title, subtitle, buttonLabel) {
   });
 
   ctx.fillStyle = "#8ef3df";
-  ctx.font = "bold 20px Trebuchet MS";
-  ctx.fillText(buttonLabel, WORLD.width / 2, overlay.buttonY + 34);
+  ctx.font = "bold 18px Trebuchet MS";
+  ctx.fillText("Tap the card to continue", WORLD.width / 2, overlay.y + 244);
   ctx.textAlign = "left";
 
   if (shouldSuggestLandscape()) {
@@ -847,13 +854,13 @@ function render() {
   }
 
   if (state.mode === "start") {
-    drawOverlay("Pulse Runner", "A compact survival run built for desktop and mobile.", "Tap Anywhere");
+    drawOverlay("Pulse Runner", "A compact survival run built for desktop and mobile.");
   } else if (state.mode === "paused") {
-    drawOverlay("Paused", "Tap or press P to resume.", "Resume");
+    drawOverlay("Paused", "Tap or press P to resume.");
   } else if (state.mode === "gameover") {
-    drawOverlay("Run Failed", "Storm took the lane. Tap anywhere to try again.", "Tap Anywhere");
+    drawOverlay("Run Failed", "Storm took the lane. Tap anywhere to try again.");
   } else if (state.mode === "win") {
-    drawOverlay("Run Complete", "All shards secured before the storm closed in. Tap anywhere to play again.", "Tap Anywhere");
+    drawOverlay("Run Complete", "All shards secured before the storm closed in. Tap anywhere to play again.");
   }
 }
 
@@ -943,6 +950,15 @@ window.addEventListener("orientationchange", updateOrientationUI);
 window.addEventListener("resize", updateOrientationUI);
 
 immersiveBtn?.addEventListener("click", async () => {
+  if (isIOSLike() && !fullscreenElementActive() && !isStandaloneDisplay()) {
+    if (orientationNote) {
+      orientationNote.textContent = "Safari on iPhone/iPad may block webpage fullscreen. Use Share > Add to Home Screen, then open the game from your home screen.";
+      orientationNote.classList.add("visible");
+    }
+    updateOrientationUI();
+    return;
+  }
+
   if (fullscreenElementActive()) {
     try {
       await exitAnyFullscreen();
