@@ -4,26 +4,26 @@
 <head>
   <meta charset="UTF-8">
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
-  <title>A Website</title>
+  <title>Signal Hub</title>
 
-  <meta name="description" content="A personal website homepage." />
+  <meta name="description" content="A compact dashboard for market watch, media review, and quick access tools." />
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="assets/css/index.css" />
   <script src="assets/js/index.js" defer></script>
 
-  <meta name="author" content="Alex">
+  <meta name="author" content="Signal Hub">
 </head>
 
 <body>
-  <header>A Website</header>
+  <header>Signal Hub</header>
   <nav class="index">
     <button type="button" class="nav-toggle" aria-label="Open left menu" onclick="openNavleft()">☰ Menu</button>
-    <a href="index.html">Home</a><a href="personal.html">Profile</a><a href="pages/games/pulse-runner/ball.html">Pulse Runner</a>
+    <a href="index.html">Dashboard</a><a href="personal.html">Account</a><a href="pages/games/pulse-runner/ball.html">Runner</a>
     <button type="button" class="nav-toggle" aria-label="Open right links panel" onclick="openNavright()">☰ Links</button>
     <form class="site-search" role="search">
-      <input type="search" placeholder="Search this page" aria-label="Search this page">
+      <input type="search" placeholder="Search dashboard" aria-label="Search dashboard">
       <input type="submit" value="Search">
     </form>
   </nav>
@@ -34,31 +34,31 @@
     <div id="leftside" class="leftside">
       <h2>Menu</h2>
       <ul>
-        <li><a href="#intro">Intro</a></li>
-        <li><a href="#stocks">Stocks</a></li>
-        <li><a href="#photography">Photography</a></li>
-        <li><a href="pages/games/pulse-runner/ball.html">Pulse Runner</a></li>
-        <li><a href="#foot">Contact</a></li>
+        <li><a href="#intro">Overview</a></li>
+        <li><a href="#stocks">Markets</a></li>
+        <li><a href="#photography">Gallery</a></li>
+        <li><a href="pages/games/pulse-runner/ball.html">Runner</a></li>
+        <li><a href="#foot">Support</a></li>
       </ul>
     </div>
 
     <aside id="rightside">
-      <h2>Quick Links</h2>
+      <h2>Quick Access</h2>
       <p>
-        <strong>Video</strong><br>
+        <strong>Media</strong><br>
         <a href="https://www.youtube.com/">YouTube</a><br>
         <a href="https://www.bilibili.com/">BiliBili</a><br>
         <br>
-        <strong>Development</strong><br>
+        <strong>Workspace</strong><br>
         <a href="https://www.github.com">GitHub</a><br>
         <br>
-        <strong>AI Tools</strong><br>
+        <strong>AI</strong><br>
         <a href="https://chat.openai.com/">ChatGPT</a><br>
         <a href="https://claude.ai/">Claude</a><br>
         <a href="https://gemini.google.com/">Gemini</a><br>
         <a href="https://www.perplexity.ai/">Perplexity</a><br>
         <br>
-        <strong>Communication</strong><br>
+        <strong>Meetings</strong><br>
         <a
           href="https://meeting.tencent.com/qrcode-login.html?redirect_link=https%3A%2F%2Fmeeting.tencent.com%2Fuser-center%2Fuser-meeting-list%2Fcurrent%3Freload%3D1&phone-number=">TencentMeeting</a><br>
       </p>
@@ -66,17 +66,17 @@
 
     <article>
       <section id="intro" class="hero-home">
-        <p class="eyebrow">Home</p>
-        <h1>Building a cleaner personal web presence</h1>
+        <p class="eyebrow">Dashboard</p>
+        <h1>Market watch, gallery review, and quick access in one place</h1>
         <div class="hero-actions">
-          <a href="personal.html" class="hero-link">Open Profile</a>
-          <a href="#photography" class="hero-link secondary">Photography</a>
+          <a href="#stocks" class="hero-link">Open Markets</a>
+          <a href="#photography" class="hero-link secondary">Open Gallery</a>
         </div>
       </section>
 
       <section id="stocks" class="content-panel stock-panel">
         <div class="stock-copy">
-          <h2>Stocks</h2>
+          <h2>Market Watch</h2>
         </div>
 
         <form class="stock-search-form" id="stockSearchForm" autocomplete="off">
@@ -86,10 +86,10 @@
               name="stock"
               type="search"
               list="stockSuggestions"
-              placeholder="Try TSM, NVDA, AMD, AAPL..."
+              placeholder="Search TSM, NVDA, AMD, AAPL..."
               aria-describedby="stockSearchStatus"
             >
-            <button type="submit" class="stock-add-button">Add Stock</button>
+            <button type="submit" class="stock-add-button">Add</button>
           </div>
           <datalist id="stockSuggestions"></datalist>
           <p class="stock-search-status" id="stockSearchStatus" aria-live="polite"></p>
@@ -114,8 +114,8 @@
 
       <section id="photography" class="content-panel photography-panel">
         <div class="photography-copy">
-          <p class="eyebrow">Photography</p>
-          <h2>Photography</h2>
+          <p class="eyebrow">Gallery</p>
+          <h2>Media Review</h2>
         </div>
 
         <div class="photo-strip">
@@ -151,7 +151,7 @@
             </div>
           </div>
           <div class="viewer-controls">
-            <button type="button" class="viewer-button" id="viewerPrev">Previous</button>
+            <button type="button" class="viewer-button" id="viewerPrev">Prev</button>
             <div class="viewer-thumbs">
               <button
                 type="button"
@@ -190,7 +190,7 @@
       <a href="tel:+8617602336743">+86 176 0233 6743</a><br>
       <a href="tel:+6594481960">+65 9448 1960</a>
     </address>
-    <p>© Alex. All rights reserved.</p>
+    <p>© Signal Hub. All rights reserved.</p>
   </footer>
 </body>
 
